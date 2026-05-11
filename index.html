@@ -3,1654 +3,1366 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projeto Carol - TikTok Shop | Histórico Completo v3.2</title>
+<title>Projeto Carol - TikTok Shop | Histórico Completo v3.3</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --bg: #0d0d0d;
+    --surface: #151515;
+    --surface2: #1c1c1c;
+    --border: #2a2a2a;
+    --accent: #ff6b6b;
+    --accent2: #ffd93d;
+    --accent3: #6bcb77;
+    --accent4: #4d96ff;
+    --pink: #ffb3c6;
+    --text: #f0f0f0;
+    --text-muted: #888;
+    --text-dim: #555;
+    --code-bg: #111;
+    --radius: 12px;
+  }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: #0f0f17;
-    color: #e8e8f0;
-    line-height: 1.6;
-    padding: 40px 20px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
   }
-  .container { max-width: 980px; margin: 0 auto; }
-  
-  header {
-    background: linear-gradient(135deg, #ff0050 0%, #00f2ea 100%);
-    padding: 40px 30px;
-    border-radius: 16px;
-    margin-bottom: 40px;
-    text-align: center;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-  }
-  header h1 { font-size: 2.2em; margin-bottom: 10px; color: #fff; }
-  header p { color: #fff; opacity: 0.95; font-size: 1.05em; }
-  header .date { 
-    display: inline-block; 
-    background: rgba(0,0,0,0.3); 
-    padding: 6px 14px; 
-    border-radius: 20px; 
-    margin-top: 12px; 
-    font-size: 0.9em; 
-    color: #fff;
-  }
-  header .version {
-    display: inline-block;
-    background: #ffb700;
-    color: #0f0f17;
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 0.85em;
-    font-weight: 700;
-    margin-left: 8px;
-  }
-  
-  nav.toc {
-    background: #1a1a26;
-    padding: 25px 30px;
-    border-radius: 12px;
-    margin-bottom: 40px;
-    border: 1px solid #2a2a3a;
-  }
-  nav.toc h2 { color: #00f2ea; font-size: 1.3em; margin-bottom: 15px; }
-  nav.toc ul { list-style: none; }
-  nav.toc li { padding: 6px 0; }
-  nav.toc a { color: #e8e8f0; text-decoration: none; transition: color 0.2s; }
-  nav.toc a:hover { color: #ff0050; }
-  nav.toc .new-tag {
-    display: inline-block;
-    background: #ff0050;
-    color: #fff;
-    font-size: 0.7em;
-    padding: 2px 8px;
-    border-radius: 8px;
-    margin-left: 6px;
-    font-weight: 700;
-  }
-  
-  section {
-    background: #1a1a26;
-    padding: 30px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    border: 1px solid #2a2a3a;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  }
-  
-  h2.section-title {
-    color: #00f2ea;
-    font-size: 1.6em;
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid #2a2a3a;
-  }
-  
-  h3 {
-    color: #ff0050;
-    font-size: 1.25em;
-    margin: 25px 0 12px 0;
-  }
-  
-  h4 {
-    color: #ffb700;
-    font-size: 1.1em;
-    margin: 18px 0 8px 0;
-  }
-  
-  p { margin-bottom: 12px; }
-  
-  ul, ol { margin: 10px 0 15px 25px; }
-  li { margin-bottom: 6px; }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 15px 0;
-    background: #0f0f17;
-    border-radius: 8px;
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #1a0a0a 0%, #0d0d0d 50%, #0a0a1a 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 40px 40px;
+    position: relative;
     overflow: hidden;
   }
-  th {
-    background: #2a2a3a;
-    color: #00f2ea;
-    padding: 12px;
-    text-align: left;
-    font-weight: 600;
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(255,107,107,0.08) 0%, transparent 70%);
+    pointer-events: none;
   }
-  td {
-    padding: 10px 12px;
-    border-top: 1px solid #2a2a3a;
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(77,150,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
   }
-  tr:hover { background: #20202e; }
-  
-  pre {
-    background: #0a0a12;
-    padding: 18px;
-    border-radius: 8px;
-    overflow-x: auto;
-    border-left: 4px solid #ff0050;
-    margin: 15px 0;
-    font-size: 0.88em;
-    color: #c8c8d8;
-    white-space: pre-wrap;
-    word-wrap: break-word;
+  .header-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+  .version-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,107,107,0.12);
+    border: 1px solid rgba(255,107,107,0.3);
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
   }
-  
-  code {
-    background: #2a2a3a;
+  .version-badge::before { content: '●'; font-size: 8px; }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  h1 span { color: var(--accent); }
+  .header-sub {
+    color: var(--text-muted);
+    font-size: 14px;
+    font-family: 'DM Mono', monospace;
+  }
+  .header-tags {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-top: 24px;
+  }
+  .tag {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* LAYOUT */
+  .container { max-width: 900px; margin: 0 auto; padding: 40px; }
+
+  /* NAV */
+  .nav {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+  .nav-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-dim);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 6px;
+  }
+  .nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: all 0.15s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .nav a:hover { background: var(--surface2); color: var(--text); }
+  .nav a .nav-icon { font-size: 14px; }
+
+  /* SECTIONS */
+  section { margin-bottom: 48px; }
+
+  .section-header {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    min-width: 28px;
+  }
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    flex: 1;
+  }
+  .section-badge {
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .badge-new { background: rgba(107,203,119,0.15); color: var(--accent3); border: 1px solid rgba(107,203,119,0.3); }
+  .badge-updated { background: rgba(255,217,61,0.12); color: var(--accent2); border: 1px solid rgba(255,217,61,0.3); }
+  .badge-done { background: rgba(77,150,255,0.12); color: var(--accent4); border: 1px solid rgba(77,150,255,0.3); }
+
+  h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 24px 0 12px;
+    color: var(--text);
+  }
+
+  p { color: #ccc; margin-bottom: 12px; }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 12px;
+  }
+  .card-accent-red { border-left: 3px solid var(--accent); }
+  .card-accent-yellow { border-left: 3px solid var(--accent2); }
+  .card-accent-green { border-left: 3px solid var(--accent3); }
+  .card-accent-blue { border-left: 3px solid var(--accent4); }
+  .card-accent-pink { border-left: 3px solid var(--pink); }
+
+  /* RULE CARDS */
+  .rule-grid { display: flex; flex-direction: column; gap: 10px; }
+  .rule-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .rule-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    background: rgba(255,107,107,0.1);
+    border: 1px solid rgba(255,107,107,0.2);
     padding: 2px 8px;
     border-radius: 4px;
-    color: #00f2ea;
-    font-size: 0.92em;
+    white-space: nowrap;
+    margin-top: 2px;
   }
-  
-  pre code { background: none; padding: 0; color: inherit; }
-  
-  .badge {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 0.82em;
-    font-weight: 600;
-    margin-right: 6px;
-  }
-  .badge-rule { background: #ff0050; color: #fff; }
-  .badge-tip { background: #00f2ea; color: #0f0f17; }
-  .badge-warn { background: #ffb700; color: #0f0f17; }
-  .badge-new { background: #00ff88; color: #0f0f17; }
-  
-  .rule-box {
-    background: linear-gradient(135deg, #2a0a1a 0%, #1a0a2a 100%);
-    border-left: 4px solid #ff0050;
-    padding: 18px 22px;
+  .rule-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .rule-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+  /* CODE BLOCKS */
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
     border-radius: 8px;
-    margin: 18px 0;
+    padding: 20px;
+    overflow-x: auto;
+    margin: 12px 0;
+    position: relative;
   }
-  .rule-box h4 { color: #ff0050; margin-bottom: 10px; }
-  
-  .scene-box {
-    background: #0f0f17;
-    border: 1px solid #2a2a3a;
-    border-radius: 10px;
-    margin: 20px 0;
+  code {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: #c9d1d9;
+    line-height: 1.8;
+    white-space: pre-wrap;
+  }
+  .code-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  /* TABLES */
+  .table-wrap { overflow-x: auto; margin: 16px 0; }
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    text-align: left;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #1e1e1e;
+    font-size: 13px;
+    color: #bbb;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--surface2); }
+
+  /* VIDEO CARDS */
+  .video-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
     overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .video-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    flex-wrap: wrap;
+  }
+  .video-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .video-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .video-body { padding: 20px; }
+
+  /* SCENE BLOCKS */
+  .scene-block {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 12px;
   }
   .scene-header {
-    background: linear-gradient(90deg, #ff0050, #ff0080);
-    color: #fff;
-    padding: 12px 20px;
+    background: var(--surface2);
+    padding: 10px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+  .scene-words {
+    background: rgba(255,217,61,0.1);
+    color: var(--accent2);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+  }
+
+  /* PRODUTO CARDS */
+  .produto-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .produto-header {
+    background: linear-gradient(90deg, rgba(255,107,107,0.08), transparent);
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap;
+  }
+  .produto-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+  .produto-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .produto-specs {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 4px;
+  }
+  .spec-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+  .produto-body { padding: 24px; }
+
+  /* TIPS */
+  .tip {
+    background: rgba(255,217,61,0.06);
+    border: 1px solid rgba(255,217,61,0.2);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #d4b94a;
+    margin: 12px 0;
+    display: flex; gap: 10px;
+  }
+  .tip::before { content: '💡'; flex-shrink: 0; }
+
+  .warning {
+    background: rgba(255,107,107,0.06);
+    border: 1px solid rgba(255,107,107,0.2);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #d4726a;
+    margin: 12px 0;
+    display: flex; gap: 10px;
+  }
+  .warning::before { content: '⚠️'; flex-shrink: 0; }
+
+  .success {
+    background: rgba(107,203,119,0.06);
+    border: 1px solid rgba(107,203,119,0.2);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #6bcb77;
+    margin: 12px 0;
+    display: flex; gap: 10px;
+  }
+  .success::before { content: '✅'; flex-shrink: 0; }
+
+  /* HASHTAGS */
+  .hashtag-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+  .hashtag {
+    background: rgba(77,150,255,0.1);
+    border: 1px solid rgba(77,150,255,0.2);
+    color: var(--accent4);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+
+  /* DESCRIPTION BOX */
+  .desc-box {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 14px;
+    color: #ccc;
+    margin: 12px 0;
+    font-style: italic;
+  }
+
+  /* CRONOGRAMA */
+  .crono-row { display: flex; gap: 0; margin-bottom: 6px; }
+  .crono-day {
+    background: rgba(255,107,107,0.12);
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 8px 0 0 8px;
+    border: 1px solid rgba(255,107,107,0.2);
+    min-width: 60px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .crono-time {
+    background: var(--surface2);
+    color: var(--text-muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 10px 14px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    min-width: 60px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .crono-content {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+    padding: 10px 16px;
+    flex: 1;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    flex-wrap: wrap;
+  }
+  .crono-video { font-size: 13px; color: var(--text); }
+  .crono-type {
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .type-valor { background: rgba(77,150,255,0.12); color: var(--accent4); }
+  .type-venda { background: rgba(107,203,119,0.12); color: var(--accent3); }
+
+  /* NEXT STEPS */
+  .steps { display: flex; flex-direction: column; gap: 8px; }
+  .step {
+    display: flex; gap: 16px; align-items: flex-start;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+  }
+  .step-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    background: rgba(255,107,107,0.1);
+    border: 1px solid rgba(255,107,107,0.2);
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
     font-weight: 600;
   }
-  .scene-body { padding: 20px; }
-  
-  .video-card {
-    background: linear-gradient(135deg, #1f0a2a 0%, #0a1a2a 100%);
-    padding: 25px;
-    border-radius: 12px;
-    margin: 25px 0;
-    border: 1px solid #2a2a3a;
+  .step-text { font-size: 13px; color: #ccc; padding-top: 4px; }
+
+  /* FOOTER */
+  .footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 32px 40px;
+    margin-top: 60px;
   }
-  .video-card h3 { color: #00f2ea; }
-  
-  .product-card {
-    background: linear-gradient(135deg, #2a1f0a 0%, #2a0a1a 100%);
-    padding: 25px;
-    border-radius: 12px;
-    margin: 25px 0;
-    border: 2px solid #ffb700;
+  .footer-inner {
+    max-width: 900px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
   }
-  .product-card h3 { color: #ffb700; }
-  
-  .copy-tip {
-    background: #00f2ea15;
-    border-left: 3px solid #00f2ea;
-    padding: 12px 16px;
-    border-radius: 6px;
-    margin: 15px 0;
-    font-size: 0.95em;
+  .footer-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
   }
-  
-  .discovery-box {
-    background: linear-gradient(135deg, #0a2a1a 0%, #0a1a2a 100%);
-    border-left: 4px solid #00ff88;
-    padding: 20px 25px;
-    border-radius: 8px;
-    margin: 20px 0;
+  .footer-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 4px;
   }
-  .discovery-box h4 { color: #00ff88; margin-bottom: 12px; }
-  
-  .hashtags {
-    background: #0a0a12;
-    padding: 12px 16px;
-    border-radius: 8px;
-    border-left: 3px solid #ffb700;
-    color: #ffb700;
-    font-family: monospace;
-    margin: 10px 0;
-    word-wrap: break-word;
+  .footer-version {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    background: rgba(255,107,107,0.1);
+    border: 1px solid rgba(255,107,107,0.2);
+    padding: 6px 14px;
+    border-radius: 100px;
   }
-  
-  .description-box {
-    background: #0a1a2a;
-    padding: 12px 16px;
-    border-radius: 8px;
-    border-left: 3px solid #00f2ea;
-    font-style: italic;
-    margin: 10px 0;
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 32px 0;
   }
-  
-  footer {
-    text-align: center;
-    padding: 30px;
-    color: #8888a0;
-    font-size: 0.9em;
-    margin-top: 40px;
-  }
-  
-  .emoji { font-size: 1.2em; }
-  strong { color: #ffb700; }
-  
-  @media print {
-    body { background: #fff; color: #000; padding: 20px; }
-    section, nav.toc, header { background: #fff; color: #000; box-shadow: none; border: 1px solid #ccc; }
-    h2.section-title, h3, h4 { color: #000; }
-    pre { background: #f4f4f4; color: #000; }
-    .scene-header { background: #333; }
+
+  /* INLINE BADGE */
+  .inline-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    padding: 2px 6px;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-left: 6px;
   }
 </style>
 </head>
 <body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="version-badge">v3.3 — Tops + Geleia Facial + Conjunto Rosa</div>
+    <h1>🎬 Projeto <span>Carol</span><br>TikTok Shop</h1>
+    <div class="header-sub">Histórico completo, regras consolidadas, prompts prontos e vídeos de produto</div>
+    <div class="header-tags">
+      <span class="tag">Exportado 10/05/2026</span>
+      <span class="tag">@achadinhos_da_carol2026</span>
+      <span class="tag">Veo 3 + Google Flow</span>
+      <span class="tag">Nano Banana</span>
+      <span class="tag">TikTok Shop</span>
+      <span class="tag">9 Regras Fixas</span>
+      <span class="tag">5 Produtos</span>
+    </div>
+  </div>
+</div>
+
 <div class="container">
 
-<header>
-  <h1>🎬 Projeto Carol - TikTok Shop</h1>
-  <p>Histórico completo, regras consolidadas, prompts prontos e vídeos de produto</p>
-  <div class="date">Exportado em 10/05/2026 <span class="version">v3.2 - Body Lock no Nano Banana</span></div>
-</header>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-title">Índice</div>
+    <div class="nav-grid">
+      <a href="#contexto"><span class="nav-icon">🎯</span> 1. Contexto</a>
+      <a href="#regras"><span class="nav-icon">🔒</span> 2. 9 Regras Fixas</a>
+      <a href="#estrategia"><span class="nav-icon">📊</span> 3. Estratégia 70/30</a>
+      <a href="#hashtags"><span class="nav-icon">💎</span> 4. Hashtags</a>
+      <a href="#fala-rapida"><span class="nav-icon">⚡</span> 5. Fala Rápida</a>
+      <a href="#stylelock"><span class="nav-icon">🔐</span> 6. Style Lock</a>
+      <a href="#trends"><span class="nav-icon">🎬</span> 7. Vídeos Trend</a>
+      <a href="#produtos"><span class="nav-icon">🛒</span> 8. Vídeos Produto</a>
+      <a href="#nano-banana"><span class="nav-icon">🍌</span> 9. Nano Banana</a>
+      <a href="#cronograma"><span class="nav-icon">📅</span> 10. Cronograma</a>
+    </div>
+  </nav>
 
-<nav class="toc">
-  <h2>📋 Índice</h2>
-  <ul>
-    <li><a href="#contexto">1. Contexto do Projeto</a> <span class="new-tag">ATUALIZADO</span></li>
-    <li><a href="#regras">2. Regras Fixas Consolidadas (9 regras)</a> <span class="new-tag">+1 NOVA</span></li>
-    <li><a href="#estrategia">3. Estratégia 70/30 - Conteúdo vs Produto</a></li>
-    <li><a href="#hashtags">4. Descoberta sobre Hashtags</a></li>
-    <li><a href="#fala-rapida">5. Descoberta sobre Fala Rápida</a> <span class="new-tag">NOVO</span></li>
-    <li><a href="#stylelock">6. O Style Lock - Como Travar Voz, Luz e Corpo</a> <span class="new-tag">ATUALIZADO</span></li>
-    <li><a href="#trends">7. Vídeos de Trend (Conteúdo de Valor)</a></li>
-    <li><a href="#video1">→ Vídeo 1 - POV Perfume</a></li>
-    <li><a href="#video2">→ Vídeo 2 - Truque Etiqueta (✅)</a></li>
-    <li><a href="#video3">→ Vídeo 3 - Red Flags Roupa</a></li>
-    <li><a href="#video4">→ Vídeo 4 - Maquiagem no Calor</a></li>
-    <li><a href="#video5">→ Vídeo 5 - Roupa Barata Parecer Cara</a></li>
-    <li><a href="#video6">→ Vídeo 6 - Red Flags Skincare</a></li>
-    <li><a href="#produtos">8. Vídeos de Produto (Venda)</a> <span class="new-tag">NOVO</span></li>
-    <li><a href="#produto1">→ Produto 01 - Bodysuit Drapeado</a></li>
-    <li><a href="#produto2">→ Produto 02 - Top Mint Sem Bojo</a></li>
-    <li><a href="#nano-banana">9. Face Swap + Body Lock no Nano Banana</a> <span class="new-tag">ATUALIZADO</span></li>
-    <li><a href="#cronograma">10. Cronograma de Postagem</a></li>
-  </ul>
-</nav>
+  <!-- 1. CONTEXTO -->
+  <section id="contexto">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2>🎯 Contexto do Projeto</h2>
+      <span class="section-badge badge-updated">ATUALIZADO</span>
+    </div>
 
-<!-- ========== CONTEXTO ========== -->
-<section id="contexto">
-  <h2 class="section-title">1. 🎯 Contexto do Projeto</h2>
-  
-  <p><strong>Carol</strong> é uma influencer IA feminina criada para vender produtos no TikTok Shop através de afiliação.</p>
-  
-  <h3>📌 Características fixas da Carol</h3>
-  <ul>
-    <li><strong>Cabelo:</strong> preto, longo e liso</li>
-    <li><strong>Olhos:</strong> azuis marcantes (Veo 3 tende a mudar - sempre reforçar "KEEP BLUE")</li>
-    <li><strong>Pele:</strong> bege quente, tom natural brasileiro com textura natural</li>
-    <li><strong>Sotaque:</strong> carioca natural, tom de "amiga dando dica"</li>
-    <li><strong>Vibe:</strong> mulher no início dos 30, energia de melhor amiga em FaceTime</li>
-    <li><strong>Altura:</strong> média (cerca de 1,65m)</li>
-    <li><strong>Corpo:</strong> slim-thick fit, silhueta ampulheta, cintura fina e definida, barriga lisa e tonificada, busto médio, coxas torneadas com definição muscular, bumbum redondo e empinado, braços finos. Tipo "brasileira de academia início dos 30" — NÃO acima do peso, NÃO modelo de passarela magra <span class="badge badge-new">RECALIBRADO</span></li>
-  </ul>
-  
-  <h3>🛠️ Stack ferramentas atual</h3>
-  <ul>
-    <li><strong>Kalodata:</strong> conta ativa para mineração manual via XLSX</li>
-    <li><strong>Veo 3 + Google Flow:</strong> geração de vídeos</li>
-    <li><strong>Nano Banana (Gemini 2.5 Flash Image):</strong> face swap em frames estáticos</li>
-    <li><strong>TikTok Shop:</strong> conta pronta para afiliação</li>
-    <li><strong>Conta Instagram/TikTok:</strong> @achadinhos_da_carol2026</li>
-  </ul>
-  
-  <h3>❌ Descartado/Pausado</h3>
-  <ul>
-    <li>Vyral (sem API)</li>
-    <li>N8N na VPS Oracle (OAuth complicado)</li>
-    <li>Cowork rodando sozinho (estava se embolando)</li>
-  </ul>
-</section>
+    <p><strong>Carol</strong> é uma influencer IA feminina criada para vender produtos no TikTok Shop através de afiliação.</p>
 
-<!-- ========== REGRAS ========== -->
-<section id="regras">
-  <h2 class="section-title">2. 🔒 Regras Fixas Consolidadas (9 regras)</h2>
-  
-  <p>Toda criação de prompt da Carol daqui pra frente segue automaticamente essas <strong>9 regras</strong>:</p>
-  
-  <div class="rule-box">
-    <h4>🔒 REGRA 1 — Style Lock completo</h4>
-    <p>Todo prompt tem CHARACTER + VOICE + LIGHTING + CAMERA + COLOR GRADING + WARDROBE + LOCATION travados. Não muda entre cenas.</p>
-  </div>
-  
-  <div class="rule-box">
-    <h4>🔒 REGRA 2 — Carol travada</h4>
-    <p>Cabelo preto longo liso + olhos azuis em TODAS as cenas. Sempre reforçar "KEEP BLUE in every single frame".</p>
-  </div>
-  
-  <div class="rule-box">
-    <h4>🔒 REGRA 3 — Sem hífens nas falas em português</h4>
-    <p>Hífens travam a IA do Veo 3 e fazem ela embolar a fala. Substituir por vírgulas ou pontos.</p>
-  </div>
-  
-  <div class="rule-box">
-    <h4>🔒 REGRA 4 — Hashtags específicas, zero genéricas</h4>
-    <p>5 a 8 hashtags por vídeo. <strong>BANIDAS:</strong> #fyp, #viral, #foryou, #paravoce. Sempre incluir 1 hashtag de persona (#achadinhosdacarol) e 1 long-tail.</p>
-  </div>
-  
-  <div class="rule-box">
-    <h4>🔒 REGRA 5 — Hook visual forte na Cena 1</h4>
-    <p>O primeiro frame deve comunicar visualmente a promessa do vídeo. Não basta a Carol falar — tem que ter o que ela mostra junto.</p>
-  </div>
-  
-  <div class="rule-box">
-    <h4>🔒 REGRA 6 — Estrutura flexível (8s por cena)</h4>
-    <p>Vídeos de trend/valor: 5 cenas (40s). Vídeos de produto: 2-3 cenas (16-24s). Sempre múltiplo de 8s.</p>
-  </div>
-  
-  <div class="rule-box">
-    <h4>🔒 REGRA 7 — CTA obrigatório na última cena</h4>
-    <p>Trends/valor: "comenta + segue". Produto: "carrinho laranja aqui embaixo, aproveita!".</p>
-  </div>
-  
-  <div class="rule-box">
-    <h4>🔒 REGRA 8 — Densidade de fala flexível <span class="badge badge-new">NOVO</span></h4>
-    <p>Padrão: 17-22 palavras por cena de 8s (130 wpm). Pode chegar a 30+ palavras se a Carol "falar rápido" estilo UGC viral (testado e aprovado: 61 palavras em 16s = 230 wpm funciona perfeitamente).</p>
-  </div>
-  
-  <div class="rule-box">
-    <h4>🔒 REGRA 9 — Body Lock travado <span class="badge badge-new">RECALIBRADO</span></h4>
-    <p>O corpo da Carol é fixo: <strong>slim-thick fit</strong>, ampulheta com cintura fina, barriga lisa tonificada, coxas torneadas (não grossas sedentárias), bumbum redondo empinado, busto médio, altura ~1,65m. Todo prompt tem o bloco BODY logo após o CHARACTER. Em planos de corpo inteiro, reforçar "fit toned curvy, NOT overweight" no SCENE ACTION pra Veo 3 não puxar nem pra magra de passarela nem pra acima do peso.</p>
-  </div>
-</section>
+    <h3>📌 Características fixas da Carol</h3>
+    <div class="card card-accent-pink">
+      <div class="table-wrap">
+        <table>
+          <tr><th>Atributo</th><th>Descrição</th></tr>
+          <tr><td>Cabelo</td><td>Preto, longo e liso</td></tr>
+          <tr><td>Olhos</td><td>Azuis/verdes marcantes (Veo 3 tende a mudar — sempre reforçar "FORCE BLUE-GREEN EYES")</td></tr>
+          <tr><td>Pele</td><td>Bege quente, tom natural brasileiro com textura natural</td></tr>
+          <tr><td>Sotaque</td><td>Carioca natural, tom de "amiga dando dica"</td></tr>
+          <tr><td>Vibe</td><td>Mulher no início dos 30, energia de melhor amiga em FaceTime</td></tr>
+          <tr><td>Altura</td><td>~1,65m</td></tr>
+          <tr><td>Corpo</td><td>Slim-thick fit, silhueta ampulheta, cintura fina e definida, barriga lisa e tonificada, busto médio, coxas torneadas com definição muscular, bumbum redondo e empinado, braços finos — NÃO acima do peso, NÃO modelo de passarela magra</td></tr>
+        </table>
+      </div>
+    </div>
 
-<!-- ========== ESTRATÉGIA ========== -->
-<section id="estrategia">
-  <h2 class="section-title">3. 📊 Estratégia 70/30</h2>
-  
-  <p>Postar só produto não cresce. O algoritmo do TikTok identifica conta comercial e não distribui pra novos usuários. A regra de ouro é:</p>
-  
-  <table>
-    <tr><th>Proporção</th><th>Tipo</th><th>Função</th></tr>
-    <tr><td>70%</td><td>Conteúdo de valor</td><td>Atrai novos seguidores, gera engajamento, treina o algoritmo</td></tr>
-    <tr><td>30%</td><td>Produto/venda</td><td>Converte os seguidores em compradores</td></tr>
-  </table>
-  
-  <h3>💡 Tipos de conteúdo de valor pra Carol</h3>
-  <ul>
-    <li>🎨 Dicas de moda</li>
-    <li>💄 Truques de beleza</li>
-    <li>🏠 Achadinhos do dia a dia</li>
-    <li>🤔 POV e relatáveis</li>
-    <li>📱 Comparativos</li>
-    <li>🔥 <strong>Trends do momento</strong> (escolhido como foco principal)</li>
-  </ul>
-</section>
+    <h3>🛠️ Stack de ferramentas</h3>
+    <div class="card card-accent-blue">
+      <div class="table-wrap">
+        <table>
+          <tr><th>Ferramenta</th><th>Uso</th></tr>
+          <tr><td>Kalodata</td><td>Mineração manual de produtos virais via XLSX</td></tr>
+          <tr><td>Veo 3 + Google Flow</td><td>Geração de vídeos</td></tr>
+          <tr><td>Nano Banana (Gemini 2.5 Flash Image)</td><td>Face swap em frames estáticos + geração de foto da Carol com produto</td></tr>
+          <tr><td>TikTok Shop</td><td>Conta pronta para afiliação</td></tr>
+          <tr><td>@achadinhos_da_carol2026</td><td>Conta Instagram/TikTok</td></tr>
+        </table>
+      </div>
+    </div>
 
-<!-- ========== HASHTAGS ========== -->
-<section id="hashtags">
-  <h2 class="section-title">4. 💎 Descoberta sobre Hashtags</h2>
-  
-  <p><strong>Descoberta empírica:</strong> O vídeo que mais performou (2.100 visualizações, 70 curtidas, 11 salvamentos) NÃO usava hashtags virais. Os 2 vídeos com #fyp #viral #foryou tiveram apenas 50 visualizações cada.</p>
-  
-  <h3>🧠 Por quê isso acontece</h3>
-  <p>O TikTok 2026 funciona assim:</p>
-  <ol>
-    <li>Algoritmo lê hashtags pra entender SOBRE O QUE é o vídeo</li>
-    <li>Entrega pra um pequeno grupo testar (50-100 pessoas)</li>
-    <li>Se engajar, expande pra mais pessoas DO MESMO NICHO</li>
-    <li>Se continuar engajando, vira viral</li>
-  </ol>
-  
-  <p><strong>Com hashtags genéricas:</strong> entrega aleatória, ninguém engaja, vídeo morre.</p>
-  <p><strong>Com hashtags específicas:</strong> entrega cirúrgica pro nicho certo, engajamento alto, expande.</p>
-  
-  <h3>✅ Estrutura ideal de hashtags</h3>
-  <table>
-    <tr><th>Tipo</th><th>Exemplo</th><th>Função</th></tr>
-    <tr><td>Nicho amplo</td><td>#moda #beleza</td><td>Define tema geral</td></tr>
-    <tr><td>Nicho específico</td><td>#calcajeans #perfumefeminino</td><td>O que o vídeo trata</td></tr>
-    <tr><td>Solução/dor</td><td>#botaomagico #cheirosa</td><td>A "promessa"</td></tr>
-    <tr><td>Persona</td><td>#achadinhosdacarol</td><td>Tribo</td></tr>
-    <tr><td>Long tail</td><td>#dicaparanaoencolherroupa</td><td>Frase específica</td></tr>
-  </table>
-</section>
+    <div class="warning">Descartado/Pausado: Vyral (sem API), N8N na VPS Oracle (OAuth complicado), Cowork rodando sozinho (estava se embolando).</div>
+  </section>
 
-<!-- ========== FALA RÁPIDA ========== -->
-<section id="fala-rapida">
-  <h2 class="section-title">5. ⚡ Descoberta sobre Fala Rápida (NOVO!)</h2>
-  
-  <div class="discovery-box">
-    <h4>🎯 Insight crítico do projeto</h4>
-    <p>O Veo 3 consegue fazer a Carol falar <strong>61 palavras em 16 segundos</strong> (= 230 palavras por minuto), mantendo lip sync natural e voz consistente. Isso é o ritmo dos influenciadores virais (Camila Loures, Jade Picon, etc).</p>
-  </div>
-  
-  <h3>📊 Densidades testadas</h3>
-  <table>
-    <tr>
-      <th>Estilo</th>
-      <th>WPM</th>
-      <th>Palavras/cena 8s</th>
-      <th>Quando usar</th>
-    </tr>
-    <tr>
-      <td>Conversacional confortável</td>
-      <td>130</td>
-      <td>17-22</td>
-      <td>Trends de valor, dicas calmas</td>
-    </tr>
-    <tr>
-      <td>UGC viral acelerado</td>
-      <td>230</td>
-      <td>28-32</td>
-      <td>Produto, hook forte, retenção alta</td>
-    </tr>
-  </table>
-  
-  <h3>💡 Por que fala rápida funciona</h3>
-  <ul>
-    <li>✅ Retém o espectador (não dá tempo de scrollar)</li>
-    <li>✅ Densidade de informação alta = mais valor por segundo</li>
-    <li>✅ Estética de "amiga animada falando rápido" = autenticidade</li>
-    <li>✅ Permite enfiar fala completa em menos cenas (16s vs 24s)</li>
-  </ul>
-  
-  <h3>🎬 Como ativar fala rápida no Style Lock</h3>
-  <p>No bloco VOICE, trocar:</p>
-  <pre><code>VOICE (identical in all scenes):
-Brazilian Portuguese with warm Rio de Janeiro carioca accent, 
-medium-low pitch, slightly raspy intimate tone, 
-fast energetic conversational pace at 230 words per minute, 
-confident excited best-friend energy, 
+  <!-- 2. REGRAS -->
+  <section id="regras">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <h2>🔒 Regras Fixas Consolidadas</h2>
+      <span class="section-badge badge-done">9 REGRAS</span>
+    </div>
+
+    <p>Toda criação de prompt da Carol daqui pra frente segue automaticamente essas <strong>9 regras</strong>:</p>
+
+    <div class="rule-grid">
+      <div class="rule-card">
+        <span class="rule-num">R1</span>
+        <div>
+          <div class="rule-title">Style Lock completo</div>
+          <div class="rule-desc">Todo prompt tem CHARACTER + VOICE + LIGHTING + CAMERA + COLOR GRADING + WARDROBE + LOCATION travados. Não muda entre cenas.</div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <span class="rule-num">R2</span>
+        <div>
+          <div class="rule-title">Carol travada</div>
+          <div class="rule-desc">Cabelo preto longo liso + olhos azuis/verdes em TODAS as cenas. Sempre reforçar "FORCE BLUE-GREEN EYES in every single frame".</div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <span class="rule-num">R3</span>
+        <div>
+          <div class="rule-title">Sem hífens nas falas em português</div>
+          <div class="rule-desc">Hífens travam a IA do Veo 3 e fazem ela embolar a fala. Substituir por vírgulas ou pontos. Também remover acentos no SCENE ACTION para evitar travamentos de leitura.</div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <span class="rule-num">R4</span>
+        <div>
+          <div class="rule-title">Hashtags específicas, zero genéricas</div>
+          <div class="rule-desc">5 a 8 hashtags por vídeo. BANIDAS: #fyp, #viral, #foryou, #paravoce. Sempre incluir 1 hashtag de persona (#achadinhosdacarol) e 1 long-tail.</div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <span class="rule-num">R5</span>
+        <div>
+          <div class="rule-title">Hook visual forte na Cena 1</div>
+          <div class="rule-desc">O primeiro frame deve comunicar visualmente a promessa do vídeo. Não basta a Carol falar — tem que ter o que ela mostra junto.</div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <span class="rule-num">R6</span>
+        <div>
+          <div class="rule-title">Estrutura flexível (8s por cena)</div>
+          <div class="rule-desc">Vídeos de trend/valor: 5 cenas (40s). Vídeos de produto: 2 a 4 cenas (16s a 32s). Sempre múltiplo de 8s.</div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <span class="rule-num">R7</span>
+        <div>
+          <div class="rule-title">CTA obrigatório na última cena</div>
+          <div class="rule-desc">Trends/valor: "comenta + segue". Produto: "carrinho laranja aqui embaixo, aproveita!".</div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <span class="rule-num">R8</span>
+        <div>
+          <div class="rule-title">Densidade de fala flexível</div>
+          <div class="rule-desc">Padrão: 17–22 palavras por cena de 8s (130 wpm). Pode chegar a ~28 palavras se a Carol "falar rápido" estilo UGC viral (230 wpm). Não ultrapassar 28 palavras por cena pra evitar corte de áudio.</div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <span class="rule-num">R9</span>
+        <div>
+          <div class="rule-title">Body Lock travado</div>
+          <div class="rule-desc">Corpo fixo: slim-thick fit, ampulheta com cintura fina, barriga lisa tonificada, coxas torneadas, bumbum redondo empinado, busto médio, ~1,65m. Em planos abertos reforçar "fit toned curvy, NOT overweight" no SCENE ACTION.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. ESTRATÉGIA -->
+  <section id="estrategia">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <h2>📊 Estratégia 70/30</h2>
+    </div>
+    <p>Postar só produto não cresce. O algoritmo do TikTok identifica conta comercial e não distribui pra novos usuários.</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Proporção</th><th>Tipo</th><th>Função</th></tr>
+        <tr><td>70%</td><td>Conteúdo de valor</td><td>Atrai novos seguidores, gera engajamento, treina o algoritmo</td></tr>
+        <tr><td>30%</td><td>Produto/venda</td><td>Converte os seguidores em compradores</td></tr>
+      </table>
+    </div>
+    <h3>💡 Tipos de conteúdo de valor pra Carol</h3>
+    <div class="card">
+      <p>🎨 Dicas de moda &nbsp;|&nbsp; 💄 Truques de beleza &nbsp;|&nbsp; 🏠 Achadinhos do dia a dia &nbsp;|&nbsp; 🤔 POV e relatáveis &nbsp;|&nbsp; 📱 Comparativos &nbsp;|&nbsp; 🔥 Trends do momento</p>
+    </div>
+  </section>
+
+  <!-- 4. HASHTAGS -->
+  <section id="hashtags">
+    <div class="section-header">
+      <span class="section-number">04</span>
+      <h2>💎 Descoberta sobre Hashtags</h2>
+    </div>
+    <div class="success">O vídeo que mais performou (2.100 visualizações, 70 curtidas, 11 salvamentos) NÃO usava hashtags virais. Os 2 vídeos com #fyp #viral #foryou tiveram apenas 50 visualizações cada.</div>
+    <h3>✅ Estrutura ideal</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Tipo</th><th>Exemplo</th><th>Função</th></tr>
+        <tr><td>Nicho amplo</td><td>#moda #beleza</td><td>Define tema geral</td></tr>
+        <tr><td>Nicho específico</td><td>#calcajeans #perfumefeminino</td><td>O que o vídeo trata</td></tr>
+        <tr><td>Solução/dor</td><td>#botaomagico #cheirosa</td><td>A "promessa"</td></tr>
+        <tr><td>Persona</td><td>#achadinhosdacarol</td><td>Tribo</td></tr>
+        <tr><td>Long tail</td><td>#dicaparanaoencolherroupa</td><td>Frase específica</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- 5. FALA RÁPIDA -->
+  <section id="fala-rapida">
+    <div class="section-header">
+      <span class="section-number">05</span>
+      <h2>⚡ Descoberta sobre Fala Rápida</h2>
+    </div>
+    <p>O Veo 3 consegue fazer a Carol falar a <strong>230 palavras por minuto</strong>, mantendo lip sync natural. Isso é o ritmo dos influenciadores virais (Camila Loures, Jade Picon, etc).</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Estilo</th><th>WPM</th><th>Palavras/cena 8s</th><th>Quando usar</th></tr>
+        <tr><td>Conversacional confortável</td><td>130</td><td>17–22</td><td>Trends de valor, dicas calmas</td></tr>
+        <tr><td>UGC viral acelerado</td><td>230</td><td>~28 (máx)</td><td>Produto, hook forte, retenção alta</td></tr>
+      </table>
+    </div>
+    <div class="warning">Não ultrapassar 28–30 palavras por cena a 230 wpm. Acima disso o áudio corta antes de terminar a fala.</div>
+    <h3>🎬 Como ativar no Style Lock</h3>
+    <pre><code>VOICE (identical in all scenes):
+Brazilian Portuguese with warm Rio de Janeiro carioca accent,
+medium-low pitch, slightly raspy intimate tone,
+fast energetic conversational pace at 230 words per minute,
+confident excited best-friend energy,
 woman in early 30s talking on FaceTime, viral UGC influencer style.</code></pre>
-</section>
+  </section>
 
-<!-- ========== STYLE LOCK ========== -->
-<section id="stylelock">
-  <h2 class="section-title">6. 🔐 Style Lock - Travando Voz, Luz e Corpo</h2>
-  
-  <p><strong>Problema:</strong> Veo 3 troca tonalidade de voz, luz, atmosfera e até proporções de corpo entre cenas (cada cena é gerada do zero, sem memória da anterior).</p>
-  
-  <p><strong>Solução:</strong> bloco fixo de estilo que cola no início de todas as cenas, descrevendo cada parâmetro com precisão técnica.</p>
-  
-  <h3>📌 Os 8 elementos do Style Lock <span class="badge badge-new">+1 NOVO</span></h3>
-  
-  <div class="rule-box">
-    <h4>1. CHARACTER</h4>
-    <p>Match exato da imagem de referência + cabelo preto longo liso + olhos azuis (KEEP BLUE) + face oval + makeup natural.</p>
-  </div>
-  
-  <div class="rule-box">
-    <h4>2. BODY <span class="badge badge-new">RECALIBRADO</span></h4>
-    <p><strong>Slim-thick fit:</strong> ampulheta com cintura fina, barriga lisa tonificada, busto médio, coxas torneadas com definição muscular, bumbum redondo empinado, altura ~1,65m, pele bege quente. Bloco separado do CHARACTER porque o Veo 3 trata corpo e rosto como camadas diferentes. <strong>Cuidado:</strong> palavras como "thick thighs" e "prominent round bottom" puxam pra acima do peso. Usar "athletic shapely thighs", "lifted perky bottom", "flat toned stomach" e principalmente o termo "slim-thick".</p>
-  </div>
-  
-  <div class="rule-box">
-    <h4>3. VOICE</h4>
-    <p>Pitch específico (medium-low) + sotaque carioca + ritmo (130 wpm padrão ou 230 wpm UGC) + textura (slightly raspy intimate tone) + energia (best friend FaceTime).</p>
-  </div>
-  
-  <div class="rule-box">
-    <h4>4. LIGHTING</h4>
-    <p>Direção (LEFT, 45°) + temperatura (4500K) + intensidade + posição da sombra. Sempre repetir entre cenas.</p>
-  </div>
-  
-  <div class="rule-box">
-    <h4>5. CAMERA</h4>
-    <p>Handheld iPhone selfie, 9:16 vertical, slight handheld shake, FaceTime intimate framing.</p>
-  </div>
-  
-  <div class="rule-box">
-    <h4>6. COLOR GRADING</h4>
-    <p>Warm slightly desaturated, soft contrast, no filters, slightly grainy texture.</p>
-  </div>
-  
-  <div class="rule-box">
-    <h4>7. WARDROBE</h4>
-    <p>Roupa específica, cabelo, acessórios, makeup. Igual em todas as cenas.</p>
-  </div>
-  
-  <div class="rule-box">
-    <h4>8. LOCATION</h4>
-    <p>Ambiente real, lived-in, não cenográfico. Sempre o mesmo entre cenas.</p>
-  </div>
-  
-  <div class="copy-tip">
-    💡 <strong>Dica de ouro:</strong> Gera as cenas em ordem (1, 2, 3...). Se uma cena sair diferente, regenera ela ANTES de partir pra próxima. Truque extra: usa o último frame da cena anterior como reference image da próxima — gera coerência forte.
-  </div>
-  
-  <div class="copy-tip">
-    💡 <strong>Body Lock em planos abertos:</strong> em cenas com câmera afastada (plano americano ou inteiro), reforça no SCENE ACTION: "Fit toned curvy hourglass body with flat stomach, athletic shapely thighs and lifted perky bottom clearly visible. Slim-thick fit Brazilian body, NOT overweight". Em selfies da cintura pra cima, basta o BODY block.
-  </div>
-</section>
-
-<!-- ========== TRENDS ========== -->
-<section id="trends">
-  <h2 class="section-title">7. 🎬 Vídeos de Trend (Conteúdo de Valor)</h2>
-  <p>São vídeos de dica/segredo/red flags pra atrair seguidores no nicho feminino comprador. 5 cenas de 8s = 40s totais.</p>
-</section>
-
-<!-- ========== VÍDEO 1 ========== -->
-<section id="video1">
-  <h2 class="section-title">→ 🎬 Vídeo 1 - POV Perfume</h2>
-  
-  <div class="video-card">
-    <h3>Tema: O segredo das mulheres que sempre cheiram bem</h3>
-    <p><strong>Trend:</strong> POV - amiga te conta o segredo</p>
-    <p><strong>Estilo:</strong> UGC selfie, FaceTime com amiga</p>
-    <p><strong>Ambiente:</strong> Quarto real, penteadeira com perfumes, luz natural</p>
-    <p><strong>Roupa:</strong> Camiseta oversized, cabelo levemente úmido (saiu do banho)</p>
-    <p class="copy-tip">⚠️ Versão antiga UGC sem Style Lock completo. Pode ser refeito quando precisar.</p>
-  </div>
-  
-  <h4>📝 Descrição</h4>
-  <div class="description-box">
-    POV: sua amiga te conta o segredo das mulheres que cheiram bem o dia inteiro 🤫✨ Salva isso! 👇
-  </div>
-  
-  <h4>#️⃣ Hashtags</h4>
-  <div class="hashtags">
-    #perfumefeminino #cheirosa #segredosdemulher #perfumequedura #dicadeperfume #pontosdecalor #fragranciaquedura #beleza
-  </div>
-</section>
-
-<!-- ========== VÍDEO 2 ========== -->
-<section id="video2">
-  <h2 class="section-title">→ ✅ Vídeo 2 - Truque da Etiqueta (FUNCIONOU)</h2>
-  
-  <div class="video-card">
-    <h3>Tema: Como saber se uma roupa vai encolher antes de comprar</h3>
-    <p><strong>Trend:</strong> Truque que ninguém te conta</p>
-    <p><strong>Estilo:</strong> UGC selfie no closet</p>
-    <p><strong>Roupa:</strong> Conjunto moletom cinza claro</p>
-    <p class="copy-tip">✅ Status: REFEITO COM STYLE LOCK e ficou fantástico!</p>
-  </div>
-  
-  <h4>📌 STYLE LOCK do Vídeo 2</h4>
-  <pre><code>STYLE LOCK — DO NOT CHANGE BETWEEN SCENES:
-
-CHARACTER (match reference image exactly): 
-Long straight black hair, striking blue eyes (KEEP BLUE in every single frame), 
-oval face, natural makeup. Same exact face in all scenes.
-
-BODY (identical in every scene, NEVER change):
-Fit toned curvy body, hourglass silhouette with clearly defined narrow waist, 
-flat toned stomach, medium natural bust, athletic shapely thighs with visible 
-muscle tone, lifted round perky bottom, slim arms with subtle definition, 
-medium height around 1.65m, slim-thick proportions typical of a fit Brazilian 
-woman in her early 30s who works out, NOT overweight, NOT skinny runway model, 
-healthy fit curvy. Warm beige skin tone with natural texture.
-
-VOICE (identical in all scenes):
-Brazilian Portuguese with warm Rio de Janeiro carioca accent, 
-medium-low pitch, slightly raspy intimate tone, 
-130 wpm conversational pace, casual best-friend energy, 
-woman in early 30s talking on FaceTime.
-
-LIGHTING (identical in all scenes):
-Soft warm daylight from window on LEFT side of frame at 45-degree angle, 
-color temperature 4500K, soft natural shadows on right side of face, 
-no professional lighting, no fill light, authentic home setting.
-
-CAMERA (identical in all scenes):
-Handheld iPhone selfie style, vertical 9:16 framing, 
-slight natural handheld shake, arm's length distance from face, 
-intimate FaceTime-style framing.
-
-COLOR GRADING (identical in all scenes):
-Warm slightly desaturated tones, soft contrast, 
-no filters, authentic phone camera look, slightly grainy texture.
-
-WARDROBE (identical in all scenes):
-Light grey casual sweat set (oversized t-shirt and matching sweatpants), 
-hair tied loose, no jewelry, no-makeup-makeup look.
-
-LOCATION (identical in all scenes):
-Real home closet area with hanging clothes blurred behind, 
-slightly cluttered lived-in feel, daytime indoor environment.</code></pre>
-
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 1 — HOOK</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She holds up a piece of fabric to camera with a shocked discovery expression. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Ninguém me ensinou isso e eu perdi muito dinheiro com roupa que encolheu, 
-guarda esse truque!'</code></pre>
+  <!-- 6. STYLE LOCK -->
+  <section id="stylelock">
+    <div class="section-header">
+      <span class="section-number">06</span>
+      <h2>🔐 Style Lock — Os 8 Elementos +1</h2>
+      <span class="section-badge badge-updated">ATUALIZADO</span>
     </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 2 — PROBLEMA</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She holds up a small shrunken shirt next to her face with a 
-dramatic disappointed playful expression. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Sabe quando você compra a blusa perfeita, lava uma vez e ela vira 
-roupa de criança? Pois é. Acontece comigo direto.'</code></pre>
+    <p>Bloco fixo de estilo que cola no início de todas as cenas para evitar que o Veo 3 troque rosto, corpo, voz, luz ou ambiente entre cenas.</p>
+    <div class="card card-accent-red">
+      <h3 style="margin-top:0">1. CHARACTER</h3>
+      <p>Match exato da imagem de referência + cabelo preto longo liso + olhos azuis/verdes (FORCE BLUE-GREEN EYES) + face oval + makeup natural.</p>
     </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 3 — TRUQUE</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She holds a clothing label very close to camera and points at the percentage 
-with focused expert expression. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'O truque é olhar a etiqueta antes de comprar. Se tiver mais de 50% de 
-algodão sem mistura, vai encolher na primeira lavagem. Anota essa.'</code></pre>
+    <div class="card card-accent-pink">
+      <h3 style="margin-top:0">2. BODY</h3>
+      <p>Slim-thick fit: ampulheta com cintura fina, barriga lisa tonificada, busto médio, coxas torneadas com definição muscular, bumbum redondo empinado, ~1,65m, pele bege quente. Bloco separado do CHARACTER. Em planos abertos reforçar "fit toned curvy, NOT overweight" no SCENE ACTION.</p>
     </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 4 — DICA EXTRA</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She nods with confidence pointing at a different label, 
-like sharing a pro tip with a knowing smile. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'O segredo é procurar peças com elastano misturado, ou poliéster. 
-Essas mantêm a forma e o tamanho lavagem após lavagem.'</code></pre>
+    <div class="card card-accent-yellow">
+      <h3 style="margin-top:0">3. VOICE</h3>
+      <p>Pitch específico (medium-low) + sotaque carioca + ritmo (130 wpm padrão ou 230 wpm UGC) + textura (slightly raspy intimate tone) + energia (best friend FaceTime).</p>
     </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 5 — CTA</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She points down toward where comments would appear with a friendly 
-knowing smile, like ending a conversation with a friend. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Comenta aqui embaixo qual roupa já encolheu pra você, 
-e me segue que eu mostro mais truques que ninguém conta.'</code></pre>
+    <div class="card card-accent-blue">
+      <h3 style="margin-top:0">4. LIGHTING</h3>
+      <p>Direção (LEFT, 45°) + temperatura (4500K) + intensidade + posição da sombra. Sempre repetir entre cenas.</p>
     </div>
-  </div>
-  
-  <h4>📝 Descrição</h4>
-  <div class="description-box">
-    Truque que ninguém me ensinou e me fez perder dinheiro 😤 Olha a etiqueta ANTES de comprar! 👇
-  </div>
-  
-  <h4>#️⃣ Hashtags</h4>
-  <div class="hashtags">
-    #truquedemoda #roupaqueencolheu #dicadelavagem #etiquetadaroupa #compracerta #achadinhosdacarol #algodaoencolhe #compraonline
-  </div>
-</section>
-
-<!-- ========== VÍDEO 3 ========== -->
-<section id="video3">
-  <h2 class="section-title">→ 🎬 Vídeo 3 - Red Flags Roupa</h2>
-  
-  <div class="video-card">
-    <h3>Tema: Red flags numa roupa que parece bonita mas é furada</h3>
-    <p><strong>Estilo:</strong> UGC selfie, vibe "amiga expert"</p>
-    <p><strong>Ambiente:</strong> Quarto/closet com araras, espelho ao lado</p>
-    <p><strong>Roupa:</strong> Camiseta preta básica oversized</p>
-  </div>
-  
-  <h4>📌 STYLE LOCK do Vídeo 3 (cole no início de TODAS as 5 cenas)</h4>
-  <pre><code>STYLE LOCK — DO NOT CHANGE BETWEEN SCENES:
-
-CHARACTER (match reference image exactly): 
-Long straight black hair, striking blue eyes (KEEP BLUE in every single frame), 
-oval face, natural makeup. Same exact face in all scenes.
-
-BODY (identical in every scene, NEVER change):
-Fit toned curvy body, hourglass silhouette with clearly defined narrow waist, 
-flat toned stomach, medium natural bust, athletic shapely thighs with visible 
-muscle tone, lifted round perky bottom, slim arms with subtle definition, 
-medium height around 1.65m, slim-thick proportions typical of a fit Brazilian 
-woman in her early 30s who works out, NOT overweight, NOT skinny runway model, 
-healthy fit curvy. Warm beige skin tone with natural texture.
-
-VOICE (identical in all scenes):
-Brazilian Portuguese with warm Rio de Janeiro carioca accent, 
-medium-low pitch, slightly raspy intimate tone, 
-130 wpm conversational pace, confident expert friend energy, 
-woman in early 30s talking on FaceTime.
-
-LIGHTING (identical in all scenes):
-Soft warm daylight from window on LEFT side of frame at 45-degree angle, 
-color temperature 4500K, soft natural shadows on right side of face, 
-no professional lighting, no fill light, authentic home setting.
-
-CAMERA (identical in all scenes):
-Handheld iPhone selfie style, vertical 9:16 framing, 
-slight natural handheld shake, arm's length distance from face, 
-intimate FaceTime-style framing.
-
-COLOR GRADING (identical in all scenes):
-Warm slightly desaturated tones, soft contrast, 
-no filters, authentic phone camera look, slightly grainy texture.
-
-WARDROBE (identical in all scenes):
-Basic black oversized t-shirt, hair loose and natural, 
-small simple earrings, no-makeup-makeup look.
-
-LOCATION (identical in all scenes):
-Real bedroom with clothing rack and full-length mirror visible, 
-slightly lived-in, daytime indoor environment.</code></pre>
-
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 1 — HOOK VISUAL</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She holds up TWO different blouses side by side close to camera 
-(one clearly bad quality with crooked seams, one good quality), 
-looking directly at the phone with a serious 'expert friend' expression 
-and a slight smirk. The two blouses are the visual hook so the viewer 
-immediately understands she is about to compare. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Três red flags numa roupa que parece linda na foto, 
-mas é furada na vida real.'</code></pre>
+    <div class="card">
+      <h3 style="margin-top:0">5. CAMERA</h3>
+      <p>Handheld iPhone selfie, 9:16 vertical, slight handheld shake, FaceTime intimate framing.</p>
     </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 2 — RED FLAG 1</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She holds up a thin sheer fabric piece against the window light with a 
-critical raised eyebrow, showing the transparency. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Red flag um: tecido transparente quando você levanta contra a luz. 
-Isso significa que vai precisar de short ou regata por baixo, sempre.'</code></pre>
+    <div class="card">
+      <h3 style="margin-top:0">6. COLOR GRADING</h3>
+      <p>Warm slightly desaturated, soft contrast, no filters, slightly grainy texture.</p>
     </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 3 — RED FLAG 2</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She holds a blouse close to camera and points to a misaligned crooked seam 
-with a disapproving expression, like showing evidence to a friend. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Red flag dois: costura torta ou que puxa o tecido. 
-Significa acabamento ruim, depois de duas lavagens vai abrir, pode anotar.'</code></pre>
+    <div class="card">
+      <h3 style="margin-top:0">7. WARDROBE</h3>
+      <p>Roupa específica, cabelo, acessórios, makeup. Igual em todas as cenas. Detalhar exatamente o que veste e o que NÃO segura nas mãos (evitar props que o Veo 3 possa errar).</p>
     </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 4 — RED FLAG 3</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She points to a plastic zipper on a piece of clothing close to camera 
-with an expression of warning, like alerting a best friend. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Red flag três: zíper de plástico em peça que custa caro. 
-Se quebra na primeira semana e não tem como concertar, fica esperta!'</code></pre>
+    <div class="card">
+      <h3 style="margin-top:0">8. LOCATION</h3>
+      <p>Ambiente real, lived-in, não cenográfico. Sempre o mesmo entre cenas.</p>
     </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 5 — CTA</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She smiles warmly pointing down toward where comments would appear, 
-gesturing 'spill the tea' with her free hand. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Comenta aqui qual red flag você já caiu, eu já caí em todas essas. 
-Me segue pra próximas dicas de compra esperta!'</code></pre>
+    <div class="tip">Gera as cenas em ordem (1, 2, 3…). Se uma cena sair diferente, regenera ela ANTES de partir pra próxima. Usa o último frame da cena anterior como reference image da próxima — gera coerência forte.</div>
+    <div class="tip">Em planos abertos (plano americano ou inteiro), reforça no SCENE ACTION: "Fit toned curvy hourglass body with flat stomach, athletic shapely thighs and lifted perky bottom clearly visible. Slim-thick fit Brazilian body, NOT overweight".</div>
+  </section>
+
+  <!-- 7. VÍDEOS TREND -->
+  <section id="trends">
+    <div class="section-header">
+      <span class="section-number">07</span>
+      <h2>🎬 Vídeos de Trend (Conteúdo de Valor)</h2>
     </div>
-  </div>
-  
-  <h4>📝 Descrição</h4>
-  <div class="description-box">
-    3 red flags numa roupa que parece linda mas é furada 🚩 Já caí em todas! Conta nos comentários 👇
-  </div>
-  
-  <h4>#️⃣ Hashtags</h4>
-  <div class="hashtags">
-    #redflagsmoda #roupafurada #qualidadederoupa #tecidotransparente #compraesperta #dicademoda #achadinhosdacarol #costuratorta
-  </div>
-</section>
+    <p>Vídeos de dica/segredo/red flags pra atrair seguidores no nicho feminino comprador. 5 cenas de 8s = 40s totais.</p>
 
-<!-- ========== VÍDEO 4 ========== -->
-<section id="video4">
-  <h2 class="section-title">→ 🎬 Vídeo 4 - Maquiagem no Calor</h2>
-  
-  <div class="video-card">
-    <h3>Tema: Maquiagem que não derrete no calor</h3>
-    <p><strong>Estilo:</strong> UGC selfie, vibe "amiga depois da academia"</p>
-    <p><strong>Ambiente:</strong> Quarto real com penteadeira de maquiagem</p>
-    <p><strong>Roupa:</strong> Camiseta branca básica, cabelo solto</p>
-  </div>
-  
-  <h4>📌 STYLE LOCK do Vídeo 4</h4>
-  <pre><code>STYLE LOCK — DO NOT CHANGE BETWEEN SCENES:
-
-CHARACTER (match reference image exactly): 
-Long straight black hair, striking blue eyes (KEEP BLUE in every single frame), 
-oval face, natural makeup. Same exact face in all scenes.
-
-BODY (identical in every scene, NEVER change):
-Fit toned curvy body, hourglass silhouette with clearly defined narrow waist, 
-flat toned stomach, medium natural bust, athletic shapely thighs with visible 
-muscle tone, lifted round perky bottom, slim arms with subtle definition, 
-medium height around 1.65m, slim-thick proportions typical of a fit Brazilian 
-woman in her early 30s who works out, NOT overweight, NOT skinny runway model, 
-healthy fit curvy. Warm beige skin tone with natural texture.
-
-VOICE (identical in all scenes):
-Brazilian Portuguese with warm Rio de Janeiro carioca accent, 
-medium-low pitch, slightly raspy intimate tone, 
-130 wpm conversational pace, casual best-friend energy, 
-woman in early 30s talking on FaceTime.
-
-LIGHTING (identical in all scenes):
-Soft warm daylight from window on LEFT side of frame at 45-degree angle, 
-color temperature 4500K, soft natural shadows on right side of face, 
-no professional lighting, no fill light, authentic home setting.
-
-CAMERA (identical in all scenes):
-Handheld iPhone selfie style, vertical 9:16 framing, 
-slight natural handheld shake, arm's length distance from face, 
-intimate FaceTime-style framing.
-
-COLOR GRADING (identical in all scenes):
-Warm slightly desaturated tones, soft contrast, 
-no filters, authentic phone camera look, slightly grainy texture.
-
-WARDROBE (identical in all scenes):
-Plain white basic t-shirt, hair loose and natural, 
-small simple earrings, full natural makeup look (foundation, mascara, lipstick).
-
-LOCATION (identical in all scenes):
-Real bedroom with vanity table and makeup products visible blurred behind, 
-slightly lived-in, daytime indoor environment.</code></pre>
-
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 1 — HOOK VISUAL</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She holds up TWO photos of herself side by side close to camera 
-(one with melted smudged makeup looking sweaty and messy, 
-one with perfect intact makeup looking flawless). 
-The two photos are the visual hook. She has a conspiratorial 
-excited expression like sharing a secret with her best friend. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Amiga, vem cá que eu vou te contar o segredo da maquiagem 
-que não derrete nem no calor de quarenta graus.'</code></pre>
+    <div class="video-card">
+      <div class="video-header">
+        <div class="video-title">🎬 Vídeo 1 — POV Perfume</div>
+        <div class="video-meta">5 cenas · 40s · 130 wpm</div>
+      </div>
+      <div class="video-body">
+        <p><strong>Tema:</strong> O segredo das mulheres que sempre cheiram bem</p>
+        <div class="warning">Versão antiga UGC sem Style Lock completo. Refazer quando precisar.</div>
+        <div class="hashtag-wrap">
+          <span class="hashtag">#perfumefeminino</span><span class="hashtag">#cheirosa</span><span class="hashtag">#segredosdemulher</span><span class="hashtag">#perfumequedura</span><span class="hashtag">#dicadeperfume</span><span class="hashtag">#pontosdecalor</span><span class="hashtag">#fragranciaquedura</span><span class="hashtag">#beleza</span>
+        </div>
+      </div>
     </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 2 — PROBLEMA</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She rolls her eyes playfully and gestures with frustration, 
-miming wiping sweat off her forehead with disappointment. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Sabe quando você arruma a make linda, sai de casa, 
-e em duas horas tá toda borrada? Eu odiava chegar nos lugares 
-parecendo que tinha chorado.'</code></pre>
+
+    <div class="video-card">
+      <div class="video-header">
+        <div class="video-title">✅ Vídeo 2 — Truque da Etiqueta</div>
+        <div class="video-meta">5 cenas · 40s · 130 wpm</div>
+      </div>
+      <div class="video-body">
+        <p><strong>Tema:</strong> Como saber se uma roupa vai encolher antes de comprar</p>
+        <div class="success">REFEITO COM STYLE LOCK — ficou fantástico!</div>
+        <div class="desc-box">Truque que ninguém me ensinou e me fez perder dinheiro 😤 Olha a etiqueta ANTES de comprar! 👇</div>
+        <div class="hashtag-wrap">
+          <span class="hashtag">#truquedemoda</span><span class="hashtag">#roupaqueencolheu</span><span class="hashtag">#dicadelavagem</span><span class="hashtag">#etiquetadaroupa</span><span class="hashtag">#compracerta</span><span class="hashtag">#achadinhosdacarol</span><span class="hashtag">#algodaoencolhe</span><span class="hashtag">#compraonline</span>
+        </div>
+      </div>
     </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 3 — SEGREDO 1</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She holds a small ice cube wrapped in cloth close to her cheek 
-with a wise excited expression, like sharing forbidden knowledge. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Primeiro segredo: antes da base, passa um cubo de gelo enrolado 
-no pano pelo rosto. Fecha os poros e a make gruda muito mais.'</code></pre>
+
+    <div class="video-card">
+      <div class="video-header">
+        <div class="video-title">🎬 Vídeo 3 — Red Flags Roupa</div>
+        <div class="video-meta">5 cenas · 40s · 130 wpm</div>
+      </div>
+      <div class="video-body">
+        <p><strong>Tema:</strong> Red flags numa roupa que parece bonita mas é furada</p>
+        <div class="desc-box">3 red flags numa roupa que parece linda mas é furada 🚩 Já caí em todas! Conta nos comentários 👇</div>
+        <div class="hashtag-wrap">
+          <span class="hashtag">#redflagsmoda</span><span class="hashtag">#roupafurada</span><span class="hashtag">#qualidadederoupa</span><span class="hashtag">#tecidotransparente</span><span class="hashtag">#compraesperta</span><span class="hashtag">#dicademoda</span><span class="hashtag">#achadinhosdacarol</span><span class="hashtag">#costuratorta</span>
+        </div>
+      </div>
     </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 4 — SEGREDO 2</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She holds up a small spray bottle of fixer setting spray close to camera, 
-miming spraying it on her face with confident expert smile. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Segundo: termina a make e borrifa fixador em formato de X 
-e depois de cruz no rosto. Sela tudo e a make dura o dia inteiro, 
-juro pela minha vida.'</code></pre>
+
+    <div class="video-card">
+      <div class="video-header">
+        <div class="video-title">🎬 Vídeo 4 — Maquiagem no Calor</div>
+        <div class="video-meta">5 cenas · 40s · 130 wpm</div>
+      </div>
+      <div class="video-body">
+        <p><strong>Tema:</strong> Maquiagem que não derrete no calor</p>
+        <div class="desc-box">POV: sua amiga te conta o segredo da maquiagem que não derrete no calor 🥵💄 Salva pra não esquecer 👇</div>
+        <div class="hashtag-wrap">
+          <span class="hashtag">#maquiagemquedura</span><span class="hashtag">#makenoderrete</span><span class="hashtag">#makenocalor</span><span class="hashtag">#segredodemaquiagem</span><span class="hashtag">#fixadordemake</span><span class="hashtag">#makeperfeita</span><span class="hashtag">#achadinhosdacarol</span><span class="hashtag">#dicademakeup</span>
+        </div>
+      </div>
     </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 5 — CTA</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She winks at the phone screen with a warm friendly smile, 
-gestures down with her finger toward where comments would be. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Salva esse vídeo, manda pra sua amiga, e me segue 
-que amanhã eu te conto qual fixador é o queridinho que tá bombando.'</code></pre>
+
+    <div class="video-card">
+      <div class="video-header">
+        <div class="video-title">🎬 Vídeo 5 — Roupa Barata Parecer Cara</div>
+        <div class="video-meta">5 cenas · 40s · 130 wpm</div>
+      </div>
+      <div class="video-body">
+        <p><strong>Tema:</strong> Como fazer roupa barata parecer cara</p>
+        <div class="desc-box">3 truques que fazem roupa barata parecer cara 💰✨ O truque 1 sozinho já muda tudo! 👇</div>
+        <div class="hashtag-wrap">
+          <span class="hashtag">#truquedemoda</span><span class="hashtag">#roupabaratapareceCara</span><span class="hashtag">#modaesperta</span><span class="hashtag">#ferrodepassar</span><span class="hashtag">#caimentodaroupa</span><span class="hashtag">#achadinhosdacarol</span><span class="hashtag">#lookbarato</span><span class="hashtag">#moda</span>
+        </div>
+      </div>
     </div>
-  </div>
-  
-  <h4>📝 Descrição</h4>
-  <div class="description-box">
-    POV: sua amiga te conta o segredo da maquiagem que não derrete no calor 🥵💄 Salva pra não esquecer 👇
-  </div>
-  
-  <h4>#️⃣ Hashtags</h4>
-  <div class="hashtags">
-    #maquiagemquedura #makenoderrete #makenocalor #segredodemaquiagem #fixadordemake #makeperfeita #achadinhosdacarol #dicademakeup
-  </div>
-</section>
 
-<!-- ========== VÍDEO 5 ========== -->
-<section id="video5">
-  <h2 class="section-title">→ 🎬 Vídeo 5 - Roupa Barata Parecer Cara</h2>
-  
-  <div class="video-card">
-    <h3>Tema: Como fazer roupa barata parecer cara</h3>
-    <p><strong>Estilo:</strong> UGC selfie no closet</p>
-    <p><strong>Roupa:</strong> Conjunto preto básico (camiseta + calça)</p>
-  </div>
-  
-  <h4>📌 STYLE LOCK do Vídeo 5</h4>
-  <pre><code>STYLE LOCK — DO NOT CHANGE BETWEEN SCENES:
-
-CHARACTER (match reference image exactly): 
-Long straight black hair, striking blue eyes (KEEP BLUE in every single frame), 
-oval face, natural makeup. Same exact face in all scenes.
-
-BODY (identical in every scene, NEVER change):
-Fit toned curvy body, hourglass silhouette with clearly defined narrow waist, 
-flat toned stomach, medium natural bust, athletic shapely thighs with visible 
-muscle tone, lifted round perky bottom, slim arms with subtle definition, 
-medium height around 1.65m, slim-thick proportions typical of a fit Brazilian 
-woman in her early 30s who works out, NOT overweight, NOT skinny runway model, 
-healthy fit curvy. Warm beige skin tone with natural texture.
-
-VOICE (identical in all scenes):
-Brazilian Portuguese with warm Rio de Janeiro carioca accent, 
-medium-low pitch, slightly raspy intimate tone, 
-130 wpm conversational pace, confident expert friend energy, 
-woman in early 30s talking on FaceTime.
-
-LIGHTING (identical in all scenes):
-Soft warm daylight from window on LEFT side of frame at 45-degree angle, 
-color temperature 4500K, soft natural shadows on right side of face, 
-no professional lighting, no fill light, authentic home setting.
-
-CAMERA (identical in all scenes):
-Handheld iPhone selfie style, vertical 9:16 framing, 
-slight natural handheld shake, arm's length distance from face, 
-intimate FaceTime-style framing.
-
-COLOR GRADING (identical in all scenes):
-Warm slightly desaturated tones, soft contrast, 
-no filters, authentic phone camera look, slightly grainy texture.
-
-WARDROBE (identical in all scenes):
-Basic black t-shirt and black pants set, hair loose and natural, 
-small simple earrings, no-makeup-makeup look.
-
-LOCATION (identical in all scenes):
-Real home closet area with hanging clothes blurred behind, 
-slightly cluttered lived-in feel, daytime indoor environment.</code></pre>
-
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 1 — HOOK VISUAL</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She holds up a clothing piece close to camera and dramatically rips off 
-a price tag showing "R$ 39,90" with a mischievous excited smirk. 
-The price tag is the visual hook. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Ninguém me ensinou isso e eu gastava uma fortuna em roupa. 
-Guarda esses três truques que fazem qualquer peça barata parecer cara.'</code></pre>
+    <div class="video-card">
+      <div class="video-header">
+        <div class="video-title">🎬 Vídeo 6 — Red Flags Skincare</div>
+        <div class="video-meta">5 cenas · 40s · 130 wpm</div>
+      </div>
+      <div class="video-body">
+        <p><strong>Tema:</strong> Red flags em creme/skincare ruim</p>
+        <div class="desc-box">3 red flags num creme que parece bom mas tá detonando sua pele 🚩 Vira o pote ANTES de comprar! 👇</div>
+        <div class="hashtag-wrap">
+          <span class="hashtag">#redflagsskincare</span><span class="hashtag">#cremeruim</span><span class="hashtag">#skincareesperta</span><span class="hashtag">#ingredientesdaformula</span><span class="hashtag">#peleboa</span><span class="hashtag">#achadinhosdacarol</span><span class="hashtag">#cuidadocomapele</span><span class="hashtag">#dicadeskincare</span>
+        </div>
+      </div>
     </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 2 — PROBLEMA</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She makes an expressive frustrated face, mimes opening and closing a wallet, 
-showing it empty with a playful disappointed expression. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Sabe quando você quer parecer arrumada mas seu orçamento não permite? 
-Pois é, eu vivia comprando roupa cara achando que ia resolver. Não resolveu.'</code></pre>
+  </section>
+
+  <!-- 8. PRODUTOS -->
+  <section id="produtos">
+    <div class="section-header">
+      <span class="section-number">08</span>
+      <h2>🛒 Vídeos de Produto (Venda)</h2>
+      <span class="section-badge badge-updated">5 PRODUTOS</span>
     </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 3 — TRUQUE 1</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She holds up an iron close to camera and points to it 
-with a focused expert expression, like sharing a pro tip. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Truque um: passa ferro em TUDO antes de usar. 
-Roupa amassada parece de brechó, roupa passada parece de butique. 
-Esse truque sozinho já muda tudo.'</code></pre>
+    <p>Vídeos focados em conversão. Todos com Style Lock + UGC + CTA "carrinho laranja". Roteiro base vem do Kalodata/Gemini e é adaptado pra Carol.</p>
+
+    <h3>🔄 Workflow Gemini → Carol</h3>
+    <div class="card card-accent-green">
+      <p>1. Gemini analisa vídeo viral do Kalodata e gera prompt base<br>
+      2. Prompt vem com modelo diferente → adaptar pra Carol (preto/azul)<br>
+      3. Remover "boca fechada" e adicionar lip sync<br>
+      4. Trocar câmera de tripé por handheld UGC<br>
+      5. Aplicar Style Lock + sem hífens + sem acentos no SCENE ACTION + hashtags + CTA</p>
     </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 4 — TRUQUES 2 E 3</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She shows two fingers (counting truques 2 and 3), then holds up 
-a cheap clothing tag and rips it off, then mimes adjusting fit 
-on her shoulder, with a knowing satisfied smile. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Dois: arranca a etiqueta interna que aparece. Três: ajusta a peça 
-no corpo certo, manga no comprimento certo, barra na altura certa. 
-Caimento bom é o que separa roupa cara de roupa barata.'</code></pre>
+
+    <!-- PRODUTO 01 -->
+    <div class="produto-card">
+      <div class="produto-header">
+        <div>
+          <div class="produto-num">PRODUTO 01</div>
+          <div class="produto-title">Bodysuit Drapeado Preto Ombro Único</div>
+        </div>
+        <div class="produto-specs">
+          <span class="spec-pill">3 cenas · 24s</span>
+          <span class="spec-pill">130 wpm</span>
+          <span class="spec-pill">Closet</span>
+        </div>
+      </div>
+      <div class="produto-body">
+        <p>Bodysuit preto ombro único com drapeado lateral. Roupa: bodysuit preto + jeans azul + brincos argola dourados.</p>
+        <div class="scene-block">
+          <div class="scene-header"><span>🎬 CENA 1 — HOOK</span><span class="scene-words">17 palavras</span></div>
+          <div style="padding:14px 16px;font-size:13px;color:#bbb">"Meninas, esse body chama a atenção de um jeito absurdo. Toda vez que eu uso, alguém comenta."</div>
+        </div>
+        <div class="scene-block">
+          <div class="scene-header"><span>🎬 CENA 2 — DEMONSTRAÇÃO</span><span class="scene-words">28 palavras</span></div>
+          <div style="padding:14px 16px;font-size:13px;color:#bbb">"Ele é de um ombro só, mas o detalhe que faz toda a diferença é esse drapeado lateral. Ele veste muito bem, é confortável e estica bastante."</div>
+        </div>
+        <div class="scene-block">
+          <div class="scene-header"><span>🎬 CENA 3 — CTA VENDA</span><span class="scene-words">16 palavras</span></div>
+          <div style="padding:14px 16px;font-size:13px;color:#bbb">"As cores vivem esgotando, mas ainda tem umas opções lindas disponíveis. Se o carrinho aparecer, aproveita!"</div>
+        </div>
+        <div class="desc-box">Esse body é de um ombro só com drapeado lateral que veste DEMAIS 🖤 Toda vez que uso alguém comenta! Carrinho laranja aqui embaixo 🛒👇</div>
+        <div class="hashtag-wrap">
+          <span class="hashtag">#bodyfeminino</span><span class="hashtag">#lookdodia</span><span class="hashtag">#bodyombrosó</span><span class="hashtag">#drapeadolateral</span><span class="hashtag">#achadinhosdacarol</span><span class="hashtag">#lookfeminino</span><span class="hashtag">#moda</span><span class="hashtag">#tiktokshopbrasil</span>
+        </div>
+      </div>
     </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 5 — CTA</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She points down toward where comments would appear with a friendly 
-knowing smile, like ending a conversation between friends. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Comenta aqui qual peça você queria descobrir como dar uma cara cara, 
-e me segue que eu mostro mais truques de moda esperta.'</code></pre>
+
+    <!-- PRODUTO 02 -->
+    <div class="produto-card">
+      <div class="produto-header">
+        <div>
+          <div class="produto-num">PRODUTO 02</div>
+          <div class="produto-title">Top Mint Sem Bojo Alcinha</div>
+        </div>
+        <div class="produto-specs">
+          <span class="spec-pill">2 cenas · 16s</span>
+          <span class="spec-pill">130 wpm</span>
+          <span class="spec-pill">Cozinha</span>
+        </div>
+      </div>
+      <div class="produto-body">
+        <p>Top alcinha verde menta com caimento perfeito. Roupa: top menta + short branco + brincos argola dourados.</p>
+        <div class="scene-block">
+          <div class="scene-header"><span>🎬 CENA 1 — HOOK + DIFERENCIAL</span><span class="scene-words">22 palavras</span></div>
+          <div style="padding:14px 16px;font-size:13px;color:#bbb">"Sabe aquela roupa que resolve sua vida em segundos? É literalmente só vestir e sair pronta. Não precisa de nada por baixo."</div>
+        </div>
+        <div class="scene-block">
+          <div class="scene-header"><span>🎬 CENA 2 — PROVA + CTA</span><span class="scene-words">19 palavras</span></div>
+          <div style="padding:14px 16px;font-size:13px;color:#bbb">"Não marca, não incomoda e não aperta. Depois que usei, virou minha favorita. Carrinho laranja aqui embaixo, aproveita!"</div>
+        </div>
+        <div class="desc-box">Esse top resolve a vida em segundos 🤍✨ Não precisa de nada por baixo, não marca, não aperta! Carrinho laranja aqui embaixo 🛒👇</div>
+        <div class="hashtag-wrap">
+          <span class="hashtag">#topfeminino</span><span class="hashtag">#lookpratico</span><span class="hashtag">#lookdodia</span><span class="hashtag">#topsembojo</span><span class="hashtag">#achadinhosdacarol</span><span class="hashtag">#lookfeminino</span><span class="hashtag">#verao</span><span class="hashtag">#tiktokshopbrasil</span>
+        </div>
+      </div>
     </div>
-  </div>
-  
-  <h4>📝 Descrição</h4>
-  <div class="description-box">
-    3 truques que fazem roupa barata parecer cara 💰✨ O truque 1 sozinho já muda tudo! 👇
-  </div>
-  
-  <h4>#️⃣ Hashtags</h4>
-  <div class="hashtags">
-    #truquedemoda #roupabaratapareceCara #modaesperta #ferrodepassar #caimentodaroupa #achadinhosdacarol #lookbarato #moda
-  </div>
-</section>
 
-<!-- ========== VÍDEO 6 ========== -->
-<section id="video6">
-  <h2 class="section-title">→ 🎬 Vídeo 6 - Red Flags Skincare</h2>
-  
-  <div class="video-card">
-    <h3>Tema: Red flags em creme/skincare ruim</h3>
-    <p><strong>Estilo:</strong> UGC selfie no banheiro</p>
-    <p><strong>Roupa:</strong> Camiseta cinza claro + cabelo preso parcialmente</p>
-  </div>
-  
-  <h4>📌 STYLE LOCK do Vídeo 6</h4>
-  <pre><code>STYLE LOCK — DO NOT CHANGE BETWEEN SCENES:
+    <!-- PRODUTO 03 -->
+    <div class="produto-card">
+      <div class="produto-header">
+        <div>
+          <div class="produto-num">PRODUTO 03 — NOVO</div>
+          <div class="produto-title">Conjunto Rosa Cropped + Saia Mini</div>
+        </div>
+        <div class="produto-specs">
+          <span class="spec-pill">2 cenas · 16s</span>
+          <span class="spec-pill">Sem fala</span>
+          <span class="spec-pill">Dança trend</span>
+          <span class="spec-pill">Quarto/Closet</span>
+        </div>
+      </div>
+      <div class="produto-body">
+        <p>Conjunto rosa bebê: cropped manga longa gola alta + saia mini drapeada. Formato diferente: <strong>só dança, sem fala</strong>, com música "Dá uma Voltinha" do MC Gustavinho & Gt do Mira no fundo.</p>
+        <div class="tip">Trend fortíssima — Camila Loures e Tainá Costa fizeram com milhões de views. O movimento de girar devagar mostra o conjunto por todos os ângulos.</div>
 
-CHARACTER (match reference image exactly): 
-Long straight black hair (partially clipped back), striking blue eyes 
-(KEEP BLUE in every single frame), oval face, natural skincare-prep look 
-(no makeup). Same exact face in all scenes.
+        <div class="scene-block">
+          <div class="scene-header"><span>🎬 CENA 1 — HOOK: VOLTINHA 360°</span><span class="scene-words">Sem fala</span></div>
+          <div style="padding:14px 16px;font-size:13px;color:#bbb">Ela faz uma voltinha completa de 360° devagar, mostrando o conjunto de todos os ângulos. Começa de frente com sorriso radiante, gira mostrando perfil e costas (saia mini drapeada valorizando o corpo), completa o giro de volta pra câmera.</div>
+        </div>
+        <div class="scene-block">
+          <div class="scene-header"><span>🎬 CENA 2 — DETALHE + ENCERRAMENTO</span><span class="scene-words">Sem fala</span></div>
+          <div style="padding:14px 16px;font-size:13px;color:#bbb">Ela continua dançando com swings de quadril, toca o tecido drapeado da saia na cintura/quadril pra chamar atenção ao caimento. No final faz meia-voltinha, pausa mostrando as costas na saia justinha, olha por cima do ombro pra câmera com sorriso.</div>
+        </div>
 
-BODY (identical in every scene, NEVER change):
-Fit toned curvy body, hourglass silhouette with clearly defined narrow waist, 
-flat toned stomach, medium natural bust, athletic shapely thighs with visible 
-muscle tone, lifted round perky bottom, slim arms with subtle definition, 
-medium height around 1.65m, slim-thick proportions typical of a fit Brazilian 
-woman in her early 30s who works out, NOT overweight, NOT skinny runway model, 
-healthy fit curvy. Warm beige skin tone with natural texture.
+        <div class="warning">A saia é MINI (SHORT, termina na metade da coxa). Sempre reforçar "SHORT MINI SKIRT ends at mid-thigh, NOT midi, NOT knee-length, NOT long" no prompt E no face swap do Nano Banana.</div>
 
-VOICE (identical in all scenes):
-Brazilian Portuguese with warm Rio de Janeiro carioca accent, 
-medium-low pitch, slightly raspy intimate tone, 
-130 wpm conversational pace, confident expert friend energy, 
-woman in early 30s talking on FaceTime.
+        <h3>🍌 Nano Banana — Face Swap Conjunto Rosa</h3>
+        <div class="code-label">prompt nano banana (image 1 = modelo original | image 2 = carol)</div>
+        <pre><code>TASK: Replace ONLY the face and hair of the woman in image 1 with the 
+exact face and hair of the woman in image 2. Keep EVERYTHING ELSE 
+from image 1 absolutely unchanged.
 
-LIGHTING (identical in all scenes):
-Soft warm daylight from window on LEFT side of frame at 45-degree angle, 
-color temperature 4500K, soft natural shadows on right side of face, 
-no professional lighting, no fill light, authentic home setting.
+FACE AND HAIR (copy exactly from image 2):
+- Same oval face, same striking blue-green eyes 
+  (FORCE BLUE-GREEN EYES, this is the most critical feature)
+- Same long straight black hair falling naturally past the shoulders
+- Same eyebrows, same lips, same natural makeup look
+- Natural skin tone match between face and body, no visible blend lines
 
-CAMERA (identical in all scenes):
-Handheld iPhone selfie style, vertical 9:16 framing, 
-slight natural handheld shake, arm's length distance from face, 
-intimate FaceTime-style framing.
+KEEP ABSOLUTELY EVERYTHING FROM IMAGE 1 UNCHANGED:
+- Same body, same pose, same hand position (heart gesture)
+- Same outfit: baby pink cropped long-sleeve turtleneck top 
+  (ends above navel) + baby pink MINI ruched skirt 
+  (SHORT, ends mid-thigh, NOT midi, NOT knee-length, NOT long)
+- The skirt LENGTH must be identical to image 1: SHORT MINI SKIRT 
+  ending at mid-thigh. Do NOT lengthen the skirt under any circumstance.
+- Same background, same lighting, same camera angle, same composition
+- Same slim-thick body proportions from image 1
 
-COLOR GRADING (identical in all scenes):
-Warm slightly desaturated tones, soft contrast, 
-no filters, authentic phone camera look, slightly grainy texture.
+CRITICAL: This is a face swap only. Do not alter the outfit, 
+do not change the skirt length, do not change the body shape. 
+Only the face and hair change. Photorealistic seamless result.</code></pre>
 
-WARDROBE (identical in all scenes):
-Light grey casual t-shirt, hair partially clipped back with claw clip, 
-clean fresh skin no makeup, no jewelry.
-
-LOCATION (identical in all scenes):
-Real home bathroom with sink and skincare products visible blurred behind, 
-slightly cluttered lived-in feel, daytime indoor environment.</code></pre>
-
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 1 — HOOK VISUAL</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She holds up a jar of cream very close to camera, opens it dramatically 
-to reveal a strange separated yellowish texture inside, with a 
-shocked disgusted but expert expression. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Três red flags num creme que parece bom mas tá detonando sua pele.'</code></pre>
+        <div class="desc-box">Dá uma voltinha 🩷🔥 Esse conjunto tá perfeito demais! Carrinho laranja aqui embaixo 🛒👇</div>
+        <div class="hashtag-wrap">
+          <span class="hashtag">#conjuntorosa</span><span class="hashtag">#lookfeminino</span><span class="hashtag">#saiamini</span><span class="hashtag">#conjuntocasual</span><span class="hashtag">#achadinhosdacarol</span><span class="hashtag">#tiktokshopbrasil</span><span class="hashtag">#lookdodia</span><span class="hashtag">#modafeminina</span>
+        </div>
+      </div>
     </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 2 — RED FLAG 1</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She sniffs an open cream jar close to camera and recoils with a 
-disgusted face, fanning her nose. Realistic lip sync, no subtitles, 
-saying in Brazilian Portuguese: 
-'Red flag um: cheiro forte de perfume ou de produto químico. 
-Pele boa não precisa de perfume, isso só esconde ingrediente 
-de baixa qualidade e ainda irrita.'</code></pre>
+
+    <!-- PRODUTO 04 -->
+    <div class="produto-card">
+      <div class="produto-header">
+        <div>
+          <div class="produto-num">PRODUTO 04 — NOVO</div>
+          <div class="produto-title">Geleia Facial de Colágeno Kokeshi</div>
+        </div>
+        <div class="produto-specs">
+          <span class="spec-pill">4 cenas · 32s</span>
+          <span class="spec-pill">230 wpm</span>
+          <span class="spec-pill">~28 palavras/cena</span>
+          <span class="spec-pill">Casa c/ plantas</span>
+        </div>
+      </div>
+      <div class="produto-body">
+        <p>Geleia facial translúcida vermelha com colágeno, vitamina E, extrato de arroz, cereja e romã. Roupa: regata bege/branca + brincos argola dourados.</p>
+        <div class="tip">4 cenas necessárias pois a fala é densa. Máximo ~28 palavras por cena a 230 wpm evita corte de áudio.</div>
+
+        <div class="scene-block">
+          <div class="scene-header"><span>🎬 CENA 1 — HOOK</span><span class="scene-words">27 palavras</span></div>
+          <div style="padding:14px 16px;font-size:13px;color:#bbb">"Essa geleia facial aqui tá viralizando na internet e eu vim te contar tudo sobre ela, porque ela é baratíssima e simplesmente perfeita."</div>
+        </div>
+        <div class="scene-block">
+          <div class="scene-header"><span>🎬 CENA 2 — ATIVOS</span><span class="scene-words">27 palavras</span></div>
+          <div style="padding:14px 16px;font-size:13px;color:#bbb">"Tem ativos perfeitos na composição: colágeno, vitamina E, extrato de arroz, de cereja e de romã. Tudo isso numa geleia só, pelo amor."</div>
+        </div>
+        <div class="scene-block">
+          <div class="scene-header"><span>🎬 CENA 3 — BENEFÍCIOS</span><span class="scene-words">28 palavras</span></div>
+          <div style="padding:14px 16px;font-size:13px;color:#bbb">"Ela deixa a pele perfeita, firme, super hidratada e com aquele colágeno incrível. Sério, depois que comecei a usar eu não larguei mais. A pele fica simplesmente outra coisa."</div>
+        </div>
+        <div class="scene-block">
+          <div class="scene-header"><span>🎬 CENA 4 — NOME + CTA</span><span class="scene-words">28 palavras</span></div>
+          <div style="padding:14px 16px;font-size:13px;color:#bbb">"É a Geleia Facial de Colágeno da Kokeshi. Aquele produto hypado que a Kokeshi trouxe de novo. Clica no carrinho laranja aqui embaixo e aproveita!"</div>
+        </div>
+
+        <div class="desc-box">Essa geleia facial da Kokeshi tá viralizando por um motivo 🫙🔴 Colágeno, vitamina E, extrato de cereja e romã por um preço baratíssimo! Carrinho laranja aqui embaixo 🛒👇</div>
+        <div class="hashtag-wrap">
+          <span class="hashtag">#geleiafacial</span><span class="hashtag">#kokeshi</span><span class="hashtag">#skincarebarato</span><span class="hashtag">#colageno</span><span class="hashtag">#achadinhosdacarol</span><span class="hashtag">#cuidadocomapele</span><span class="hashtag">#skincarebrasil</span><span class="hashtag">#tiktokshopbrasil</span>
+        </div>
+      </div>
     </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 3 — RED FLAG 2</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She rubs cream between two fingers close to camera and makes a 
-disapproving face, showing the greasy oily texture stretching 
-between her fingers. Realistic lip sync, no subtitles, 
-saying in Brazilian Portuguese: 
-'Red flag dois: textura grossa e oleosa que demora pra absorver. 
-Isso significa muito enchimento e pouco ativo, pode jogar fora 
-que não vai funcionar.'</code></pre>
+
+    <!-- PRODUTO 05 -->
+    <div class="produto-card">
+      <div class="produto-header">
+        <div>
+          <div class="produto-num">PRODUTO 05 — NOVO</div>
+          <div class="produto-title">Top Canelado Mauve com Sustentação</div>
+        </div>
+        <div class="produto-specs">
+          <span class="spec-pill">2 cenas · 16s</span>
+          <span class="spec-pill">230 wpm</span>
+          <span class="spec-pill">~28 palavras/cena</span>
+          <span class="spec-pill">Quarto/Closet</span>
+        </div>
+      </div>
+      <div class="produto-body">
+        <p>Top canelado rosé/mauve, alças largas ajustáveis, decote U, sem bojo, acabamento canelado na barra. Tamanhos P ao GG, opção 1 ou 3 unidades. Roupa: top mauve + calça preta cintura alta.</p>
+        <div class="success">Foto de referência gerada no Nano Banana com sucesso — Carol vestindo o top, corpo slim-thick, closet ao fundo. Usar como reference image no Veo 3.</div>
+
+        <div class="scene-block">
+          <div class="scene-header"><span>🎬 CENA 1 — HOOK + CONFORTO</span><span class="scene-words">27 palavras</span></div>
+          <div style="padding:14px 16px;font-size:13px;color:#bbb">"Olha esse top canelado, extremamente confortavel, toque macio e super leve. Nao aperta e ainda tem uma sustentacao incrivel. Simplesmente perfeito."</div>
+        </div>
+        <div class="scene-block">
+          <div class="scene-header"><span>🎬 CENA 2 — TAMANHOS + CTA</span><span class="scene-words">28 palavras</span></div>
+          <div style="padding:14px 16px;font-size:13px;color:#bbb">"A alca e o fecho sao ajustaveis e tem do tamanho P ao GG. Voce ainda escolhe com uma ou tres unidades. Clica no carrinho aqui embaixo e aproveita!"</div>
+        </div>
+
+        <div class="tip">Sem props nas mãos em nenhuma das cenas. Ela toca o próprio tecido e ajusta a alça — gestos naturais, sem segurar objetos. Evita erro do Veo 3.</div>
+
+        <h3>🍌 Nano Banana — Carol com o Top Canelado</h3>
+        <div class="code-label">prompt nano banana (image 1 = foto da carol | image 2 = flat lay do top)</div>
+        <pre><code>TASK: Generate a realistic photo of the woman from image 1 
+wearing the top from image 2.
+
+PERSON (take exactly from image 1):
+- Same oval face, same striking blue-green eyes 
+  (FORCE BLUE-GREEN EYES, most critical feature)
+- Same long straight black hair falling naturally past the shoulders
+- Same eyebrows, same lips, same natural makeup look
+- Same warm beige skin tone
+
+OUTFIT (take exactly from image 2):
+- Dusty mauve/rosé ribbed cropped top
+- Wide shoulder straps, U-neckline, no underwire
+- Ribbed elastic band at the bottom hem
+- Seamless ribbed fabric texture throughout
+- Fitted but comfortable, ends just below the bust line
+- Pair with black high-waisted leggings
+
+BODY:
+Fit toned curvy hourglass body, clearly defined narrow waist,
+flat toned stomach visible below the crop top hem,
+medium natural bust filling the top naturally,
+athletic shapely thighs, lifted perky bottom,
+slim toned arms, medium height around 1.65m.
+Slim-thick fit Brazilian body, NOT overweight, NOT skinny runway model.
+
+POSE:
+She faces the camera slightly angled, one hand lightly touching 
+the ribbed fabric of the top at the waist,
+natural relaxed confident stance,
+hip slightly tilted to one side to emphasize the hourglass curve.
+
+SETTING:
+Real home closet area, hanging clothes slightly blurred in background,
+soft warm daylight from the left, authentic UGC feel.
+
+STYLE:
+Photorealistic, vertical 9:16 framing, authentic smartphone camera look,
+slightly grainy, no filters, no professional studio lighting.
+
+CRITICAL: The top color is dusty mauve/rosé (muted pinkish purple).
+Do NOT change it to brown or grey. Keep the exact ribbed texture 
+and wide strap silhouette from image 2.</code></pre>
+
+        <div class="desc-box">Top canelado que não aperta, não marca e ainda sustenta 🤍🔥 Do P ao GG com alça ajustável! Carrinho laranja aqui embaixo 🛒👇</div>
+        <div class="hashtag-wrap">
+          <span class="hashtag">#topcanelado</span><span class="hashtag">#topfeminino</span><span class="hashtag">#lookconfortavel</span><span class="hashtag">#topcomeustentacao</span><span class="hashtag">#achadinhosdacarol</span><span class="hashtag">#modafeminina</span><span class="hashtag">#tiktokshopbrasil</span><span class="hashtag">#lookdodia</span>
+        </div>
+      </div>
     </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 4 — RED FLAG 3</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She points to the back of a cream jar showing the ingredient list 
-close to camera, with an expression of warning and authority. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Red flag três: o primeiro ingrediente da lista ser álcool ou parafina. 
-Isso resseca a pele a longo prazo. Vira a embalagem antes de comprar, 
-sempre.'</code></pre>
+  </section>
+
+  <!-- 9. NANO BANANA -->
+  <section id="nano-banana">
+    <div class="section-header">
+      <span class="section-number">09</span>
+      <h2>🍌 Face Swap + Body Lock no Nano Banana</h2>
+      <span class="section-badge badge-updated">ATUALIZADO</span>
     </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 5 — CTA</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She smiles warmly pointing down toward where comments would appear, 
-gesturing 'spill the tea' with her free hand, like talking to a best friend. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Comenta aqui qual creme já te decepcionou. Me segue 
-pra próximas dicas de skincare esperta sem cair em cilada.'</code></pre>
+
+    <h3>📋 Workflow recomendado</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Gemini analisa vídeo viral e gera prompt base</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Gera vídeo no Veo 3 (ou usa o original)</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">Extrai 1 frame por cena</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text">Roda face swap no Nano Banana</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text">Reconstrói vídeo no CapCut com frames trocados</div></div>
     </div>
-  </div>
-  
-  <h4>📝 Descrição</h4>
-  <div class="description-box">
-    3 red flags num creme que parece bom mas tá detonando sua pele 🚩 Vira o pote ANTES de comprar! 👇
-  </div>
-  
-  <h4>#️⃣ Hashtags</h4>
-  <div class="hashtags">
-    #redflagsskincare #cremeruim #skincareesperta #ingredientesdaformula #peleboa #achadinhosdacarol #cuidadocomapele #dicadeskincare
-  </div>
-</section>
 
-<!-- ========== PRODUTOS - INTRO ========== -->
-<section id="produtos">
-  <h2 class="section-title">8. 🛒 Vídeos de Produto (Venda) <span class="badge badge-new">NOVO</span></h2>
-  <p>Vídeos focados em conversão. Roteiro vem do Gemini analisando vídeos virais do Kalodata. Adaptados pra Carol com Style Lock + UGC + CTA "carrinho laranja".</p>
-  
-  <h3>🔄 Workflow Gemini → Carol</h3>
-  <ol>
-    <li>Gemini analisa vídeo viral do Kalodata e gera prompt base</li>
-    <li>Prompt vem com modelo loira/cacheada → adaptamos pra Carol (preto/azul)</li>
-    <li>Removemos "boca fechada" e adicionamos lip sync</li>
-    <li>Trocamos câmera de tripé por handheld UGC</li>
-    <li>Aplicamos Style Lock + sem hífens + hashtags + CTA</li>
-  </ol>
-</section>
-
-<!-- ========== PRODUTO 01 ========== -->
-<section id="produto1">
-  <h2 class="section-title">→ 🛒 Produto 01 - Bodysuit Drapeado</h2>
-  
-  <div class="product-card">
-    <h3>Bodysuit preto ombro único com drapeado lateral</h3>
-    <p><strong>Estilo:</strong> UGC selfie no closet</p>
-    <p><strong>Ambiente:</strong> Closet com prateleiras de madeira escura</p>
-    <p><strong>Roupa:</strong> Bodysuit preto ombro único + jeans azul + brincos de argola dourados</p>
-    <p><strong>Duração:</strong> 24s (3 cenas de 8s)</p>
-    <p><strong>Fala:</strong> 61 palavras totais</p>
-  </div>
-  
-  <h4>📌 STYLE LOCK do Produto 01</h4>
-  <pre><code>STYLE LOCK — DO NOT CHANGE BETWEEN SCENES:
-
-CHARACTER (match reference image exactly): 
-Long straight black hair, striking blue eyes (KEEP BLUE in every single frame), 
-oval face, natural makeup. Same exact face in all scenes.
-
-BODY (identical in every scene, NEVER change):
-Fit toned curvy body, hourglass silhouette with clearly defined narrow waist, 
-flat toned stomach, medium natural bust, athletic shapely thighs with visible 
-muscle tone, lifted round perky bottom, slim arms with subtle definition, 
-medium height around 1.65m, slim-thick proportions typical of a fit Brazilian 
-woman in her early 30s who works out, NOT overweight, NOT skinny runway model, 
-healthy fit curvy. Warm beige skin tone with natural texture.
-
-VOICE (identical in all scenes):
-Brazilian Portuguese with warm Rio de Janeiro carioca accent, 
-medium-low pitch, slightly raspy intimate tone, 
-130 wpm conversational pace, confident excited best-friend energy, 
-woman in early 30s talking on FaceTime.
-
-LIGHTING (identical in all scenes):
-Soft warm daylight from window on LEFT side of frame at 45-degree angle, 
-color temperature 4500K, soft natural shadows on right side of face, 
-no professional lighting, no fill light, authentic home setting.
-
-CAMERA (identical in all scenes):
-Handheld iPhone selfie style, vertical 9:16 framing, 
-slight natural handheld shake, arm's length distance from face, 
-medium shot from waist up, intimate FaceTime-style framing.
-
-COLOR GRADING (identical in all scenes):
-Warm slightly desaturated tones, soft contrast, 
-no filters, authentic phone camera look, slightly grainy texture.
-
-WARDROBE (identical in all scenes):
-Solid black one-shoulder ruched bodysuit with side draping detail, 
-classic blue jeans, gold hoop earrings, hair loose and natural, 
-no-makeup-makeup look.
-
-LOCATION (identical in all scenes):
-Real walk-in closet with warm dark wooden shelves and hanging racks 
-filled with neatly organized clothing in various colors, 
-slightly defocused in background, daytime indoor environment.</code></pre>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 1 — HOOK (8s) - 17 palavras</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She smiles brightly at the phone camera with excited confident energy, 
-points with both hands toward the single shoulder strap of her black bodysuit, 
-showing off the design with enthusiasm. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Meninas, esse body chama a atenção de um jeito absurdo. 
-Toda vez que eu uso, alguém comenta.'</code></pre>
-    </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 2 — DEMONSTRAÇÃO (8s) - 28 palavras</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She uses one hand to touch and gently pull at the draped side fabric 
-of the bodysuit near her waist, demonstrating the ruched detail. 
-Then runs her fingers along the fabric showing how it stretches and falls, 
-with a confident proud expression. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Ele é de um ombro só, mas o detalhe que faz toda a diferença 
-é esse drapeado lateral. Ele veste muito bem, é confortável e estica bastante.'</code></pre>
-    </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 3 — CTA VENDA (8s) - 16 palavras</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She points down toward the bottom of the screen with an excited urgent smile, 
-gesturing toward where the orange shopping cart icon would appear, 
-like alerting a friend to act fast before stock runs out. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'As cores vivem esgotando, mas ainda tem umas opções lindas disponíveis. 
-Se o carrinho aparecer, aproveita!'</code></pre>
-    </div>
-  </div>
-  
-  <h4>📝 Descrição</h4>
-  <div class="description-box">
-    Esse body é de um ombro só com drapeado lateral que veste DEMAIS 🖤 Toda vez que uso alguém comenta! Carrinho laranja aqui embaixo 🛒👇
-  </div>
-  
-  <h4>#️⃣ Hashtags</h4>
-  <div class="hashtags">
-    #bodyfeminino #lookdodia #bodyombrosó #drapeadolateral #achadinhosdacarol #lookfeminino #moda #tiktokshopbrasil
-  </div>
-</section>
-
-<!-- ========== PRODUTO 02 ========== -->
-<section id="produto2">
-  <h2 class="section-title">→ 🛒 Produto 02 - Top Mint Sem Bojo</h2>
-  
-  <div class="product-card">
-    <h3>Top alcinha verde menta com caimento perfeito</h3>
-    <p><strong>Estilo:</strong> UGC selfie na cozinha</p>
-    <p><strong>Ambiente:</strong> Cozinha moderna com armários de madeira, bancada branca</p>
-    <p><strong>Roupa:</strong> Top alcinha verde menta + short branco + brincos de argola dourados</p>
-    <p><strong>Duração:</strong> 16s (2 cenas de 8s)</p>
-    <p><strong>Fala:</strong> 41 palavras totais</p>
-  </div>
-  
-  <h4>📌 STYLE LOCK do Produto 02</h4>
-  <pre><code>STYLE LOCK — DO NOT CHANGE BETWEEN SCENES:
-
-CHARACTER (match reference image exactly): 
-Long straight black hair, striking blue eyes (KEEP BLUE in every single frame), 
-oval face, natural makeup. Same exact face in all scenes.
-
-BODY (identical in every scene, NEVER change):
-Fit toned curvy body, hourglass silhouette with clearly defined narrow waist, 
-flat toned stomach, medium natural bust, athletic shapely thighs with visible 
-muscle tone, lifted round perky bottom, slim arms with subtle definition, 
-medium height around 1.65m, slim-thick proportions typical of a fit Brazilian 
-woman in her early 30s who works out, NOT overweight, NOT skinny runway model, 
-healthy fit curvy. Warm beige skin tone with natural texture.
-
-VOICE (identical in all scenes):
-Brazilian Portuguese with warm Rio de Janeiro carioca accent, 
-medium-low pitch, slightly raspy intimate tone, 
-130 wpm conversational pace, confident excited best-friend energy, 
-woman in early 30s talking on FaceTime.
-
-LIGHTING (identical in all scenes):
-Soft warm daylight from window on LEFT side of frame at 45-degree angle, 
-color temperature 4500K, soft natural shadows on right side of face, 
-no professional lighting, no fill light, authentic home setting.
-
-CAMERA (identical in all scenes):
-Handheld iPhone selfie style, vertical 9:16 framing, 
-slight natural handheld shake, arm's length distance from face, 
-medium shot from waist up, intimate FaceTime-style framing.
-
-COLOR GRADING (identical in all scenes):
-Warm slightly desaturated tones, soft contrast, 
-no filters, authentic phone camera look, slightly grainy texture.
-
-WARDROBE (identical in all scenes):
-Fitted light mint green spaghetti-strap tank top with seamless smooth fit, 
-loose white shorts, gold hoop earrings, hair loose and natural, 
-no-makeup-makeup look.
-
-LOCATION (identical in all scenes):
-Real modern kitchen with warm wooden cabinets and white countertops, 
-soft window light visible in background, slightly defocused, 
-daytime indoor environment.</code></pre>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 1 — HOOK + DIFERENCIAL (8s) - 22 palavras</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She smiles brightly at the phone camera with excited confident energy, 
-lightly touches the thin spaghetti strap of her mint green top with one hand, 
-then points to the chest area showing the seamless smooth fit. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Sabe aquela roupa que resolve sua vida em segundos? 
-É literalmente só vestir e sair pronta. Não precisa de nada por baixo.'</code></pre>
-    </div>
-  </div>
-  
-  <div class="scene-box">
-    <div class="scene-header">🎬 CENA 2 — PROVA + CTA (8s) - 19 palavras</div>
-    <div class="scene-body">
-      <pre><code>SCENE ACTION:
-She runs her fingers along the side of the fabric showing how it fits 
-without marking the skin with a confident proud expression, then points down 
-toward the bottom of the screen with an excited urgent smile, 
-gesturing toward where the orange shopping cart icon would appear. 
-Realistic lip sync, no subtitles, saying in Brazilian Portuguese: 
-'Não marca, não incomoda e não aperta. Depois que usei, virou minha favorita. 
-Carrinho laranja aqui embaixo, aproveita!'</code></pre>
-    </div>
-  </div>
-  
-  <h4>📝 Descrição</h4>
-  <div class="description-box">
-    Esse top resolve a vida em segundos 🤍✨ Não precisa de nada por baixo, não marca, não aperta! Carrinho laranja aqui embaixo 🛒👇
-  </div>
-  
-  <h4>#️⃣ Hashtags</h4>
-  <div class="hashtags">
-    #topfeminino #lookpratico #lookdodia #topsembojo #achadinhosdacarol #lookfeminino #verao #tiktokshopbrasil
-  </div>
-</section>
-
-<!-- ========== NANO BANANA ========== -->
-<section id="nano-banana">
-  <h2 class="section-title">9. 🍌 Face Swap + Body Lock no Nano Banana <span class="badge badge-new">ATUALIZADO</span></h2>
-  
-  <p>Nano Banana (Gemini 2.5 Flash Image) faz face swap em frames estáticos. Útil pra reaproveitar análises do Gemini com vídeos virais e trocar a modelo loira pela Carol.</p>
-  
-  <h3>📋 Workflow recomendado</h3>
-  <ol>
-    <li>Gemini analisa vídeo viral e gera prompt</li>
-    <li>Gera vídeo no Veo 3 (ou usa o original)</li>
-    <li>Extrai 1 frame por cena</li>
-    <li>Roda face swap no Nano Banana</li>
-    <li>Reconstrói vídeo no CapCut com frames trocados</li>
-  </ol>
-  
-  <h3>🎯 Prompt principal pro Nano Banana</h3>
-  <pre><code>Replace the face and hair of the woman in image 1 with the exact face 
+    <h3>🎯 Uso 1 — Face Swap Puro (manter corpo do original)</h3>
+    <pre><code>Replace the face and hair of the woman in image 1 with the exact face
 and hair of the woman in image 2.
 
 Keep ABSOLUTELY EVERYTHING ELSE from image 1 unchanged:
 - Same body, same pose, same hand position, same gestures
-- Same outfit
-- Same accessories
-- Same background and environment
+- Same outfit, same accessories, same background and environment
 - Same lighting, same camera angle, same composition
 - Same skin tone on body and arms
 
 ONLY change these features to match image 2:
-- Face: oval shape, natural makeup, striking blue eyes, full lips
-- Hair: long straight black hair (replace the original hair completely 
-  with long straight black hair, falling naturally past the shoulders)
+- Face: oval shape, natural makeup, striking blue-green eyes, full lips
+- Hair: long straight black hair (replace completely, falling past shoulders)
 - Eyebrows: natural dark brown shape matching the new face
 
-The result should look like the woman from image 2 is wearing the outfit 
-and standing in the location from image 1. Photorealistic, seamless integration, 
+The result should look like the woman from image 2 is wearing the outfit
+and standing in the location from image 1. Photorealistic, seamless integration,
 natural skin tone matching between face and body, no visible blend lines.
-
 UGC selfie photography style, vertical 9:16 framing, authentic smartphone look.</code></pre>
-  
-  <div class="copy-tip">
-    💡 <strong>Versão curta</strong> se a longa não funcionar: "Take the face and hair from image 2 and put it on the body from image 1. Keep everything else from image 1 identical. Photorealistic seamless face swap, natural skin tone match."
-  </div>
-  
-  <h3>💪 Body Lock no Nano Banana <span class="badge badge-new">DESCOBERTA 10/05/2026</span></h3>
-  
-  <div class="discovery-box">
-    <h4>🎯 Insight crítico</h4>
-    <p>Nano Banana é <strong>conservador com o corpo</strong>: ele tende a preservar a silhueta da imagem original mesmo quando a gente descreve um corpo diferente. Pedir "Keep her body fit toned curvy" não funciona — ele lê isso como "preserve a pessoa inteira" e mantém o corpo magro do original.</p>
-    <p>A solução é usar comando explícito de <strong>RESHAPE</strong> (remodelagem) em vez de KEEP, com contraste claro entre o corpo de partida e o corpo de chegada.</p>
-  </div>
-  
-  <h4>🔑 As 3 sacadas que destravam o Body Lock no Nano Banana</h4>
-  <ol>
-    <li><strong>"RESHAPE her body" em vez de "Keep her body"</strong> — troca o modo do Nano Banana de preservar pra transformar.</li>
-    <li><strong>Contraste explícito</strong>: "from the slim figure shown to a curvier slim-thick figure" — ele entende que tem que SAIR do corpo atual.</li>
-    <li><strong>Referência visual concreta</strong>: "Brazilian fitness influencer, CrossFit athlete, glute-training" — termos com muito treino visual em cima funcionam melhor que "slim-thick" abstrato.</li>
-  </ol>
-  
-  <h4>📋 Template oficial Nano Banana com Body Lock</h4>
-  <pre><code>TASK: Transform the woman in this image. Keep her face and hair identical, 
+
+    <h3>🎯 Uso 2 — Carol com produto (flat lay → Carol vestindo)</h3>
+    <p>Ver prompts individuais de cada produto na seção 8.</p>
+
+    <h3>💪 Body Lock com RESHAPE</h3>
+    <div class="tip">Nano Banana é conservador com o corpo. "Keep her body fit toned curvy" não funciona — ele preserva o original. Usar "RESHAPE" com contraste explícito entre o corpo de partida e chegada.</div>
+
+    <div class="card card-accent-yellow">
+      <h3 style="margin-top:0">🔑 As 3 sacadas que destravam o Body Lock</h3>
+      <p>1. <strong>"RESHAPE her body"</strong> em vez de "Keep her body" — troca o modo de preservar pra transformar.</p>
+      <p>2. <strong>Contraste explícito:</strong> "from the slim figure shown to a curvier slim-thick figure" — ele entende que precisa SAIR do corpo atual.</p>
+      <p>3. <strong>Referência visual concreta:</strong> "Brazilian fitness influencer, CrossFit athlete, glute-training" — termos com muito treino visual funcionam melhor que "slim-thick" abstrato.</p>
+    </div>
+
+    <div class="code-label">template oficial nano banana com body lock (reshape)</div>
+    <pre><code>TASK: Transform the woman in this image. Keep her face and hair identical,
 but RESHAPE her body to a curvier athletic figure.
 
 FACE AND HAIR (keep exactly identical to reference):
-- Same oval face, same striking blue eyes (KEEP BLUE)
+- Same oval face, same striking blue-green eyes (FORCE BLUE-GREEN EYES)
 - Same long straight black hair, same eyebrows, same lips
 - Same warm beige skin tone
 
 BODY TRANSFORMATION (this is the main change, do not skip):
-RESHAPE her body from the slim figure shown to a curvier slim-thick athletic 
+RESHAPE her body from the slim figure shown to a curvier slim-thick athletic
 figure. The new body must have:
 - Wider fuller hips creating a clear hourglass shape (NOT straight up and down)
-- Rounder lifted bottom with clear volume in the back, visible curve from waist to hip
-- Thicker athletic toned thighs with visible muscle shape (like a fitness influencer, 
-  not skinny model legs)
+- Rounder lifted bottom with clear volume, visible curve from waist to hip
+- Thicker athletic toned thighs with visible muscle shape
 - Same narrow waist accentuating the wider hips
-- Same flat toned stomach
-- Same medium natural bust
-- Same slim toned arms
-- Body type reference: think Brazilian fitness influencer like a CrossFit or 
-  glute-training athlete. Curves from squats and gym, not from being slim.
+- Same flat toned stomach, same medium natural bust, same slim toned arms
+- Body type reference: Brazilian fitness influencer, CrossFit or glute-training 
+  athlete. Curves from squats and gym, not from being slim.
 
 OUTFIT:
-[DESCREVA O LOOK aqui — sempre incluir frase do tipo "the high-waisted X 
-hugs her wider hips and thicker thighs naturally"]
+[DESCREVA O LOOK — incluir "the X hugs her wider hips and thicker thighs naturally"]
 
 POSE:
-[DESCREVA A POSE — sempre adicionar "Hip slightly tilted to one side to 
-emphasize the hourglass curve"]
+[DESCREVA A POSE — adicionar "Hip slightly tilted to one side to emphasize hourglass"]
 
 BACKGROUND:
 [DESCREVA O CENÁRIO]
 
 STYLE:
-Photorealistic full-body photo, vertical 9:16 framing, authentic smartphone 
+Photorealistic full-body photo, vertical 9:16 framing, authentic smartphone
 camera look, slightly grainy, no filters, no professional studio lighting.
 
-CRITICAL INSTRUCTION: The original image shows a slim straight body. 
-Do NOT preserve that body shape. The output MUST show clearly wider hips, 
-thicker athletic thighs and a rounder lifted bottom than the reference. 
-This is the entire point of the transformation. Hourglass shape with 
-clear curve from waist to hip MUST be visible in the final image.</code></pre>
-  
-  <div class="copy-tip">
-    💡 <strong>Quando usar este template:</strong> sempre que precisar gerar uma Carol em foto estática nova (look book, banner, capa de produto, frame pra editar vídeo). Pra face swap puro (manter o corpo da imagem de referência), continua usando o prompt da seção anterior.
-  </div>
-  
-  <h4>🆘 Plano B se mesmo assim não pegar</h4>
-  <p>Se mesmo com RESHAPE explícito o Nano Banana devolver a Carol magra, é sinal de guardrail mais forte. Caminhos alternativos:</p>
-  <ul>
-    <li>Aceitar a Carol magra no Nano Banana e <strong>fazer o body morph no Veo 3</strong> quando virar vídeo (lá o Body Lock do Style Lock funciona)</li>
-    <li>Usar <strong>Krea AI</strong> ou <strong>Magnific</strong> que têm body shape adjustment específico</li>
-    <li>Gerar a foto base já com corpo certo no <strong>Flux 1.1 Pro</strong> ou <strong>SDXL com LoRA fitness</strong>, e usar essa como reference do face swap</li>
-  </ul>
-  
-  <h3>⚠️ Cuidados</h3>
-  <ul>
-    <li>Funciona só pra <strong>frames estáticos</strong> (não vídeo em movimento)</li>
-    <li>Pra vídeo em movimento precisa de Akool, Vidnoz Face Swap ou Roop</li>
-    <li>Quanto mais parecidos os ângulos das 2 imagens, melhor o resultado</li>
-  </ul>
-</section>
+CRITICAL INSTRUCTION: Do NOT preserve the original body shape. The output MUST 
+show clearly wider hips, thicker athletic thighs and a rounder lifted bottom. 
+Hourglass shape with clear curve from waist to hip MUST be visible.</code></pre>
 
-<!-- ========== CRONOGRAMA ========== -->
-<section id="cronograma">
-  <h2 class="section-title">10. 📅 Cronograma de Postagem Sugerido</h2>
-  
-  <h3>🗓️ Sequência ótima dos 6 vídeos de trend + 2 produtos</h3>
-  <table>
-    <tr>
-      <th>Dia</th>
-      <th>Hora</th>
-      <th>Vídeo</th>
-      <th>Tipo</th>
-      <th>Por quê</th>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>10h</td>
-      <td>Vídeo 5 (truque roupa cara)</td>
-      <td>Valor</td>
-      <td>Hook visual mais forte</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>15h</td>
-      <td>Vídeo 3 (red flags roupa)</td>
-      <td>Valor</td>
-      <td>Gera comentário, alcance via debate</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>19h</td>
-      <td>Produto 01 (bodysuit)</td>
-      <td>🛒 Venda</td>
-      <td>Audiência aquecida pelos 2 vídeos de moda do dia</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>10h</td>
-      <td>Vídeo 4 (maquiagem)</td>
-      <td>Valor</td>
-      <td>Manhã, prepara look pro dia</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>15h</td>
-      <td>Vídeo 2 (truque etiqueta)</td>
-      <td>Valor</td>
-      <td>Reforço do nicho moda esperta</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>19h</td>
-      <td>Produto 02 (top mint)</td>
-      <td>🛒 Venda</td>
-      <td>Dia 2 já com audiência mais quente</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>12h</td>
-      <td>Vídeo 6 (red flags skincare)</td>
-      <td>Valor</td>
-      <td>Almoço, scroll alto</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>20h</td>
-      <td>Vídeo 1 (POV perfume)</td>
-      <td>Valor</td>
-      <td>Clima intimista de noite</td>
-    </tr>
-  </table>
-  
-  <h3>💡 Dica importante</h3>
-  <div class="copy-tip">
-    A cada vídeo postado, <strong>responder TODOS os comentários nas primeiras 2 horas</strong>. Isso é sinal forte pro algoritmo, aumenta alcance e ainda fideliza a audiência.
-  </div>
-  
-  <h3>📊 Proporção atual</h3>
-  <table>
-    <tr><th>Tipo</th><th>Quantidade</th><th>%</th></tr>
-    <tr><td>Conteúdo de valor (trends)</td><td>6 vídeos</td><td>75%</td></tr>
-    <tr><td>Produto/venda</td><td>2 vídeos</td><td>25%</td></tr>
-  </table>
-  <p>✅ Dentro da regra de ouro 70/30!</p>
-  
-  <h3>🚀 Próximos passos planejados</h3>
-  <ol>
-    <li>Postar os 8 vídeos seguindo o cronograma</li>
-    <li>Acompanhar métricas de cada um</li>
-    <li>Identificar qual formato e tema performa melhor</li>
-    <li>Voltar pro Kalodata e gerar mais vídeos de produto</li>
-    <li>Manter proporção 70/30 conteúdo de valor + produto</li>
-    <li>Usar workflow Gemini → Carol pra escalar produção</li>
-  </ol>
-</section>
+    <h3>⚠️ Cuidados gerais</h3>
+    <div class="warning">Funciona só pra frames estáticos (não vídeo em movimento). Pra vídeo em movimento: Akool, Vidnoz Face Swap ou Roop.</div>
+    <div class="tip">Quanto mais parecidos os ângulos das 2 imagens, melhor o resultado.</div>
+    <div class="tip">Se os olhos saírem marrons ao invés de azuis, adiciona no topo: "FORCE BLUE-GREEN EYES, this is the most critical feature" e regenera.</div>
+  </section>
 
-<footer>
-  <p>📁 Histórico do Projeto Carol - TikTok Shop (v3.2 - Body Lock no Nano Banana)</p>
-  <p>Documento exportado para retomada futura • Mantenha junto ao projeto principal</p>
-  <p>Inclui: 9 regras fixas + Body Lock slim-thick + Nano Banana com RESHAPE + 6 vídeos de trend + 2 vídeos de produto</p>
-</footer>
+  <!-- 10. CRONOGRAMA -->
+  <section id="cronograma">
+    <div class="section-header">
+      <span class="section-number">10</span>
+      <h2>📅 Cronograma de Postagem</h2>
+    </div>
+
+    <h3>🗓️ Sequência ótima — 6 trends + 5 produtos</h3>
+    <p style="margin-bottom:16px">Cronograma base para os 6 vídeos de trend já prontos + produtos 01 a 05:</p>
+
+    <div class="crono-row">
+      <div class="crono-day">Dia 1</div>
+      <div class="crono-time">10h</div>
+      <div class="crono-content"><span class="crono-video">Vídeo 5 — Roupa Barata Parecer Cara</span><span class="crono-type type-valor">Valor</span></div>
+    </div>
+    <div class="crono-row">
+      <div class="crono-day">Dia 1</div>
+      <div class="crono-time">15h</div>
+      <div class="crono-content"><span class="crono-video">Vídeo 3 — Red Flags Roupa</span><span class="crono-type type-valor">Valor</span></div>
+    </div>
+    <div class="crono-row">
+      <div class="crono-day">Dia 1</div>
+      <div class="crono-time">19h</div>
+      <div class="crono-content"><span class="crono-video">Produto 01 — Bodysuit Drapeado</span><span class="crono-type type-venda">🛒 Venda</span></div>
+    </div>
+    <div class="crono-row">
+      <div class="crono-day">Dia 2</div>
+      <div class="crono-time">10h</div>
+      <div class="crono-content"><span class="crono-video">Vídeo 4 — Maquiagem no Calor</span><span class="crono-type type-valor">Valor</span></div>
+    </div>
+    <div class="crono-row">
+      <div class="crono-day">Dia 2</div>
+      <div class="crono-time">15h</div>
+      <div class="crono-content"><span class="crono-video">Vídeo 2 — Truque da Etiqueta</span><span class="crono-type type-valor">Valor</span></div>
+    </div>
+    <div class="crono-row">
+      <div class="crono-day">Dia 2</div>
+      <div class="crono-time">19h</div>
+      <div class="crono-content"><span class="crono-video">Produto 02 — Top Mint Sem Bojo</span><span class="crono-type type-venda">🛒 Venda</span></div>
+    </div>
+    <div class="crono-row">
+      <div class="crono-day">Dia 3</div>
+      <div class="crono-time">10h</div>
+      <div class="crono-content"><span class="crono-video">Produto 03 — Conjunto Rosa (Dança)</span><span class="crono-type type-venda">🛒 Venda</span></div>
+    </div>
+    <div class="crono-row">
+      <div class="crono-day">Dia 3</div>
+      <div class="crono-time">15h</div>
+      <div class="crono-content"><span class="crono-video">Vídeo 6 — Red Flags Skincare</span><span class="crono-type type-valor">Valor</span></div>
+    </div>
+    <div class="crono-row">
+      <div class="crono-day">Dia 3</div>
+      <div class="crono-time">19h</div>
+      <div class="crono-content"><span class="crono-video">Produto 04 — Geleia Facial Kokeshi</span><span class="crono-type type-venda">🛒 Venda</span></div>
+    </div>
+    <div class="crono-row">
+      <div class="crono-day">Dia 4</div>
+      <div class="crono-time">12h</div>
+      <div class="crono-content"><span class="crono-video">Vídeo 1 — POV Perfume</span><span class="crono-type type-valor">Valor</span></div>
+    </div>
+    <div class="crono-row">
+      <div class="crono-day">Dia 4</div>
+      <div class="crono-time">19h</div>
+      <div class="crono-content"><span class="crono-video">Produto 05 — Top Canelado Mauve</span><span class="crono-type type-venda">🛒 Venda</span></div>
+    </div>
+
+    <div class="tip" style="margin-top:16px">A cada vídeo postado, responder TODOS os comentários nas primeiras 2 horas. Sinal forte pro algoritmo, aumenta alcance e fideliza a audiência.</div>
+
+    <h3>📊 Proporção atual</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Tipo</th><th>Quantidade</th><th>%</th></tr>
+        <tr><td>Conteúdo de valor (trends)</td><td>6 vídeos</td><td>54%</td></tr>
+        <tr><td>Produto/venda</td><td>5 vídeos</td><td>46%</td></tr>
+      </table>
+    </div>
+    <div class="tip">Proporção levemente mais agressiva em produto com 5 produtos prontos. Compensar com mais vídeos de trend nos próximos dias pra voltar ao 70/30.</div>
+
+    <h3>🚀 Próximos passos</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Gerar vídeos no Veo 3 usando foto da Carol como reference image (Produtos 03, 04, 05)</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Postar os 11 conteúdos seguindo o cronograma</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">Acompanhar métricas de cada vídeo — identificar formato e tema que performa melhor</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text">Voltar ao Kalodata e gerar mais produtos — manter pipeline sempre cheio</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text">Criar 3 a 4 novos vídeos de trend pra voltar à proporção 70/30</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-text">Usar workflow Gemini → Carol pra escalar produção de produto</div></div>
+    </div>
+  </section>
 
 </div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-title">📁 Projeto Carol — TikTok Shop</div>
+      <div class="footer-meta">Exportado em 10/05/2026 · 9 regras fixas · 5 produtos · 6 vídeos trend</div>
+    </div>
+    <div class="footer-version">v3.3</div>
+  </div>
+</div>
+
 </body>
 </html>
