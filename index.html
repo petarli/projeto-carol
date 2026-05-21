@@ -3,576 +3,138 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projeto Carol — Guia Completo</title>
+<title>Projeto Carol — Guia Completo v6.0</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --gold: #C9A84C;
-    --gold-light: #E8C97A;
-    --gold-dark: #8B6914;
-    --black: #0A0A0A;
-    --dark: #111111;
-    --dark2: #1A1A1A;
-    --dark3: #222222;
-    --cream: #F5EDD6;
-    --cream2: #EDE0C0;
-    --white: #FAFAF8;
-    --text: #D4C4A0;
-    --text-dim: #8A7A5A;
-    --accent-teal: #2A8C8C;
-    --accent-rose: #C4556A;
-    --accent-blue: #4A7BC4;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--black);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  /* HEADER */
-  .hero {
-    background: linear-gradient(135deg, #0A0A0A 0%, #1A1208 50%, #0A0A0A 100%);
-    border-bottom: 1px solid rgba(201,168,76,0.3);
-    padding: 60px 40px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-badge {
-    display: inline-block;
-    background: rgba(201,168,76,0.1);
-    border: 1px solid rgba(201,168,76,0.3);
-    color: var(--gold);
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 6px 16px;
-    border-radius: 2px;
-    margin-bottom: 24px;
-  }
-
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(42px, 7vw, 80px);
-    font-weight: 900;
-    color: var(--cream);
-    letter-spacing: -1px;
-    line-height: 1.0;
-    margin-bottom: 16px;
-  }
-
-  .hero h1 span { color: var(--gold); }
-
-  .hero-sub {
-    font-size: 16px;
-    color: var(--text-dim);
-    max-width: 600px;
-    margin: 0 auto 32px;
-    font-weight: 300;
-  }
-
-  .hero-stats {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
-  }
-
-  .hero-stat {
-    text-align: center;
-  }
-
-  .hero-stat .num {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    color: var(--gold);
-    display: block;
-  }
-
-  .hero-stat .lbl {
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text-dim);
-  }
-
-  /* LAYOUT */
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 32px;
-  }
-
-  /* NAVIGATION */
-  .nav {
-    background: var(--dark2);
-    border-bottom: 1px solid rgba(201,168,76,0.15);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    padding: 0 40px;
-  }
-
-  .nav-inner {
-    display: flex;
-    gap: 0;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .nav-inner::-webkit-scrollbar { display: none; }
-
-  .nav-item {
-    padding: 16px 20px;
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    cursor: pointer;
-    text-decoration: none;
-    white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s;
-    font-weight: 500;
-  }
-
-  .nav-item:hover {
-    color: var(--gold);
-    border-bottom-color: var(--gold);
-  }
-
-  /* SECTIONS */
-  section {
-    padding: 64px 0;
-    border-bottom: 1px solid rgba(201,168,76,0.08);
-  }
-
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 40px;
-  }
-
-  .section-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--gold);
-    opacity: 0.6;
-    letter-spacing: 2px;
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    color: var(--cream);
-    font-weight: 700;
-  }
-
-  .section-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, rgba(201,168,76,0.3), transparent);
-  }
-
-  /* CARDS */
-  .card {
-    background: var(--dark2);
-    border: 1px solid rgba(201,168,76,0.12);
-    border-radius: 4px;
-    padding: 28px;
-    margin-bottom: 16px;
-    position: relative;
-  }
-
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px; height: 100%;
-    background: var(--gold);
-    border-radius: 4px 0 0 4px;
-    opacity: 0.6;
-  }
-
-  .card-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    color: var(--cream);
-    margin-bottom: 12px;
-    font-weight: 700;
-  }
-
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
-  }
-
-  /* CODE BLOCKS */
-  .code-block {
-    background: #080808;
-    border: 1px solid rgba(201,168,76,0.15);
-    border-radius: 4px;
-    padding: 20px 24px;
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    line-height: 1.8;
-    color: #A8C4A8;
-    overflow-x: auto;
-    margin: 12px 0;
-    white-space: pre-wrap;
-    word-break: break-word;
-  }
-
-  .code-block .comment { color: var(--text-dim); }
-  .code-block .key { color: var(--gold-light); }
-  .code-block .val { color: #8AB4D4; }
-  .code-block .str { color: #A8C4A8; }
-
-  /* TAGS */
-  .tag {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 2px;
-    font-size: 11px;
-    font-family: 'DM Mono', monospace;
-    letter-spacing: 1px;
-    margin: 2px;
-  }
-
-  .tag-gold { background: rgba(201,168,76,0.12); color: var(--gold); border: 1px solid rgba(201,168,76,0.25); }
-  .tag-teal { background: rgba(42,140,140,0.12); color: #5CC4C4; border: 1px solid rgba(42,140,140,0.25); }
-  .tag-rose { background: rgba(196,85,106,0.12); color: #E88A9A; border: 1px solid rgba(196,85,106,0.25); }
-  .tag-blue { background: rgba(74,123,196,0.12); color: #8AB4E8; border: 1px solid rgba(74,123,196,0.25); }
-
-  /* IDENTITY */
-  .identity-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
-  @media (max-width: 700px) {
-    .identity-grid { grid-template-columns: 1fr; }
-    .hero { padding: 40px 20px; }
-    .hero-stats { gap: 24px; }
-    .container { padding: 0 20px; }
-  }
-
-  .identity-item {
-    background: var(--dark3);
-    border: 1px solid rgba(201,168,76,0.1);
-    border-radius: 4px;
-    padding: 20px;
-  }
-
-  .identity-item .label {
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 8px;
-    opacity: 0.8;
-  }
-
-  .identity-item .value {
-    color: var(--cream2);
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  /* RULES LIST */
-  .rules-list {
-    list-style: none;
-    counter-reset: rules;
-  }
-
-  .rules-list li {
-    counter-increment: rules;
-    padding: 14px 0 14px 52px;
-    border-bottom: 1px solid rgba(201,168,76,0.06);
-    position: relative;
-    color: var(--text);
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  .rules-list li::before {
-    content: counter(rules, decimal-leading-zero);
-    position: absolute;
-    left: 0;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--gold);
-    opacity: 0.5;
-    top: 16px;
-  }
-
-  .rules-list li strong {
-    color: var(--cream);
-    font-weight: 600;
-  }
-
-  /* TRIGGER CARDS */
-  .trigger-card {
-    background: var(--dark2);
-    border: 1px solid rgba(201,168,76,0.12);
-    border-radius: 4px;
-    padding: 24px;
-  }
-
-  .trigger-emoji {
-    font-size: 32px;
-    margin-bottom: 12px;
-    display: block;
-  }
-
-  .trigger-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    color: var(--cream);
-    margin-bottom: 8px;
-  }
-
-  .trigger-desc {
-    font-size: 13px;
-    color: var(--text-dim);
-    line-height: 1.7;
-  }
-
-  /* TEMPLATE */
-  .template-section {
-    background: var(--dark2);
-    border: 1px solid rgba(201,168,76,0.12);
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 16px;
-  }
-
-  .template-header {
-    background: rgba(201,168,76,0.06);
-    border-bottom: 1px solid rgba(201,168,76,0.12);
-    padding: 14px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .template-header span {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: var(--gold);
-    letter-spacing: 1px;
-  }
-
-  .template-body {
-    padding: 20px 24px;
-    font-size: 13px;
-    color: var(--text);
-    line-height: 1.8;
-  }
-
-  /* SCENARIO TABLE */
-  .scenario-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  .scenario-table th {
-    text-align: left;
-    padding: 12px 16px;
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    border-bottom: 1px solid rgba(201,168,76,0.2);
-    opacity: 0.8;
-  }
-
-  .scenario-table td {
-    padding: 12px 16px;
-    font-size: 13px;
-    border-bottom: 1px solid rgba(201,168,76,0.05);
-    vertical-align: top;
-    color: var(--text);
-  }
-
-  .scenario-table tr:hover td {
-    background: rgba(201,168,76,0.03);
-  }
-
-  /* PRODUCT LIST */
-  .product-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(201,168,76,0.06);
-    border: 1px solid rgba(201,168,76,0.12);
-    border-radius: 2px;
-    padding: 4px 10px;
-    font-size: 12px;
-    color: var(--text);
-    margin: 3px;
-  }
-
-  .product-tag .dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--gold);
-    opacity: 0.6;
-  }
-
-  /* ALERT BOX */
-  .alert {
-    background: rgba(196,85,106,0.08);
-    border: 1px solid rgba(196,85,106,0.25);
-    border-radius: 4px;
-    padding: 16px 20px;
-    margin: 16px 0;
-    font-size: 13px;
-    color: #E88A9A;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
-
-  .alert-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-
-  .tip {
-    background: rgba(42,140,140,0.08);
-    border: 1px solid rgba(42,140,140,0.25);
-    border-radius: 4px;
-    padding: 16px 20px;
-    margin: 16px 0;
-    font-size: 13px;
-    color: #7AD4D4;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
-
-  /* FOOTER */
-  .footer {
-    background: var(--dark2);
-    border-top: 1px solid rgba(201,168,76,0.15);
-    padding: 40px;
-    text-align: center;
-  }
-
-  .footer-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    color: var(--gold);
-    margin-bottom: 8px;
-  }
-
-  .footer-sub {
-    font-size: 12px;
-    color: var(--text-dim);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-
-  /* COPY BTN */
-  .copy-btn {
-    background: rgba(201,168,76,0.1);
-    border: 1px solid rgba(201,168,76,0.25);
-    color: var(--gold);
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 1px;
-    padding: 4px 12px;
-    cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.2s;
-  }
-
-  .copy-btn:hover {
-    background: rgba(201,168,76,0.2);
-  }
-
-  /* DIVIDER */
-  .divider {
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent);
-    margin: 32px 0;
-  }
-
-  /* HIGHLIGHT */
-  .highlight {
-    background: rgba(201,168,76,0.08);
-    border-left: 3px solid var(--gold);
-    padding: 16px 20px;
-    margin: 16px 0;
-    font-size: 14px;
-    color: var(--cream2);
-    border-radius: 0 4px 4px 0;
-  }
-
-  h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    color: var(--cream);
-    margin: 24px 0 12px;
-  }
-
-  p { margin-bottom: 12px; }
-
-  strong { color: var(--cream2); font-weight: 600; }
-
-  a { color: var(--gold); text-decoration: none; }
-  a:hover { text-decoration: underline; }
+:root {
+  --gold: #C9A84C;
+  --gold-light: #E8C97A;
+  --black: #0A0A0A;
+  --dark: #111111;
+  --dark2: #1A1A1A;
+  --dark3: #222222;
+  --cream: #F5EDD6;
+  --cream2: #EDE0C0;
+  --text: #D4C4A0;
+  --text-dim: #8A7A5A;
+  --teal: #2A8C8C;
+  --rose: #C4556A;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--black); color:var(--text); font-family:'DM Sans',sans-serif; font-size:15px; line-height:1.7; }
+
+/* HERO */
+.hero { background:linear-gradient(135deg,#0A0A0A 0%,#1A1208 50%,#0A0A0A 100%); border-bottom:1px solid rgba(201,168,76,.3); padding:60px 40px; text-align:center; position:relative; overflow:hidden; }
+.hero::before { content:''; position:absolute; top:0;left:0;right:0;bottom:0; background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.08) 0%,transparent 70%); pointer-events:none; }
+.hero-badge { display:inline-block; background:rgba(201,168,76,.1); border:1px solid rgba(201,168,76,.3); color:var(--gold); font-family:'DM Mono',monospace; font-size:11px; letter-spacing:3px; text-transform:uppercase; padding:6px 16px; border-radius:2px; margin-bottom:24px; }
+.hero h1 { font-family:'Playfair Display',serif; font-size:clamp(42px,7vw,80px); font-weight:900; color:var(--cream); letter-spacing:-1px; line-height:1.0; margin-bottom:16px; }
+.hero h1 span { color:var(--gold); }
+.hero-sub { font-size:16px; color:var(--text-dim); max-width:600px; margin:0 auto 32px; font-weight:300; }
+.hero-stats { display:flex; justify-content:center; gap:40px; flex-wrap:wrap; }
+.hero-stat .num { font-family:'Playfair Display',serif; font-size:28px; color:var(--gold); display:block; }
+.hero-stat .lbl { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--text-dim); }
+
+/* NAV */
+.nav { background:var(--dark2); border-bottom:1px solid rgba(201,168,76,.15); position:sticky; top:0; z-index:100; padding:0 40px; }
+.nav-inner { display:flex; gap:0; overflow-x:auto; scrollbar-width:none; }
+.nav-inner::-webkit-scrollbar { display:none; }
+.nav-item { padding:16px 20px; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--text-dim); cursor:pointer; text-decoration:none; white-space:nowrap; border-bottom:2px solid transparent; transition:all .2s; font-weight:500; }
+.nav-item:hover { color:var(--gold); border-bottom-color:var(--gold); }
+
+/* LAYOUT */
+.container { max-width:1100px; margin:0 auto; padding:0 32px; }
+section { padding:64px 0; border-bottom:1px solid rgba(201,168,76,.08); }
+.section-header { display:flex; align-items:center; gap:16px; margin-bottom:40px; }
+.section-num { font-family:'DM Mono',monospace; font-size:11px; color:var(--gold); opacity:.6; letter-spacing:2px; }
+.section-title { font-family:'Playfair Display',serif; font-size:32px; color:var(--cream); font-weight:700; }
+.section-line { flex:1; height:1px; background:linear-gradient(to right,rgba(201,168,76,.3),transparent); }
+
+/* CARDS */
+.card { background:var(--dark2); border:1px solid rgba(201,168,76,.12); border-radius:4px; padding:28px; margin-bottom:16px; position:relative; }
+.card::before { content:''; position:absolute; top:0;left:0; width:3px; height:100%; background:var(--gold); border-radius:4px 0 0 4px; opacity:.6; }
+.card-title { font-family:'Playfair Display',serif; font-size:18px; color:var(--cream); margin-bottom:12px; font-weight:700; }
+.card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; }
+
+/* CODE */
+.code-block { background:#080808; border:1px solid rgba(201,168,76,.15); border-radius:4px; padding:20px 24px; font-family:'DM Mono',monospace; font-size:12px; line-height:1.8; color:#A8C4A8; overflow-x:auto; margin:12px 0; white-space:pre-wrap; word-break:break-word; }
+
+/* TAGS */
+.tag { display:inline-block; padding:3px 10px; border-radius:2px; font-size:11px; font-family:'DM Mono',monospace; letter-spacing:1px; margin:2px; }
+.tag-gold { background:rgba(201,168,76,.12); color:var(--gold); border:1px solid rgba(201,168,76,.25); }
+.tag-teal { background:rgba(42,140,140,.12); color:#5CC4C4; border:1px solid rgba(42,140,140,.25); }
+.tag-rose { background:rgba(196,85,106,.12); color:#E88A9A; border:1px solid rgba(196,85,106,.25); }
+.tag-blue { background:rgba(74,123,196,.12); color:#8AB4E8; border:1px solid rgba(74,123,196,.25); }
+
+/* IDENTITY */
+.identity-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.identity-item { background:var(--dark3); border:1px solid rgba(201,168,76,.1); border-radius:4px; padding:20px; }
+.identity-item .label { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:8px; opacity:.8; }
+.identity-item .value { color:var(--cream2); font-size:14px; line-height:1.6; }
+
+/* RULES */
+.rules-list { list-style:none; counter-reset:rules; }
+.rules-list li { counter-increment:rules; padding:14px 0 14px 52px; border-bottom:1px solid rgba(201,168,76,.06); position:relative; color:var(--text); font-size:14px; line-height:1.6; }
+.rules-list li::before { content:counter(rules,decimal-leading-zero); position:absolute; left:0; font-family:'DM Mono',monospace; font-size:11px; color:var(--gold); opacity:.5; top:16px; }
+.rules-list li strong { color:var(--cream); font-weight:600; }
+
+/* ALERTS */
+.alert { background:rgba(196,85,106,.08); border:1px solid rgba(196,85,106,.25); border-radius:4px; padding:16px 20px; margin:16px 0; font-size:13px; color:#E88A9A; display:flex; gap:12px; align-items:flex-start; }
+.tip { background:rgba(42,140,140,.08); border:1px solid rgba(42,140,140,.25); border-radius:4px; padding:16px 20px; margin:16px 0; font-size:13px; color:#7AD4D4; display:flex; gap:12px; align-items:flex-start; }
+.highlight { background:rgba(201,168,76,.08); border-left:3px solid var(--gold); padding:16px 20px; margin:16px 0; font-size:14px; color:var(--cream2); border-radius:0 4px 4px 0; }
+.divider { height:1px; background:linear-gradient(to right,transparent,rgba(201,168,76,.3),transparent); margin:32px 0; }
+
+/* TABLE */
+.table { width:100%; border-collapse:collapse; }
+.table th { text-align:left; padding:12px 16px; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); border-bottom:1px solid rgba(201,168,76,.2); opacity:.8; }
+.table td { padding:12px 16px; font-size:13px; border-bottom:1px solid rgba(201,168,76,.05); vertical-align:top; color:var(--text); }
+.table tr:hover td { background:rgba(201,168,76,.03); }
+
+/* PRODUCT */
+.product-tag { display:inline-flex; align-items:center; gap:6px; background:rgba(201,168,76,.06); border:1px solid rgba(201,168,76,.12); border-radius:2px; padding:4px 10px; font-size:12px; color:var(--text); margin:3px; }
+.product-tag .dot { width:6px; height:6px; border-radius:50%; background:var(--gold); opacity:.6; }
+
+/* TRIGGER */
+.trigger-card { background:var(--dark2); border:1px solid rgba(201,168,76,.12); border-radius:4px; padding:24px; }
+.trigger-emoji { font-size:32px; margin-bottom:12px; display:block; }
+.trigger-name { font-family:'Playfair Display',serif; font-size:20px; color:var(--cream); margin-bottom:8px; }
+.trigger-desc { font-size:13px; color:var(--text-dim); line-height:1.7; }
+
+/* FOOTER */
+.footer { background:var(--dark2); border-top:1px solid rgba(201,168,76,.15); padding:40px; text-align:center; }
+.footer-logo { font-family:'Playfair Display',serif; font-size:24px; color:var(--gold); margin-bottom:8px; }
+.footer-sub { font-size:12px; color:var(--text-dim); letter-spacing:2px; text-transform:uppercase; }
+
+h3 { font-family:'Playfair Display',serif; font-size:20px; color:var(--cream); margin:24px 0 12px; }
+p { margin-bottom:12px; }
+strong { color:var(--cream2); font-weight:600; }
+a { color:var(--gold); text-decoration:none; }
+
+@media(max-width:700px) {
+  .identity-grid { grid-template-columns:1fr; }
+  .hero { padding:40px 20px; }
+  .hero-stats { gap:24px; }
+  .container { padding:0 20px; }
+}
 </style>
 </head>
 <body>
 
-<!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">Projeto Carol · Guia Completo v5.0</div>
+  <div class="hero-badge">Projeto Carol · Guia Completo v6.0 · Mai 2026</div>
   <h1>Achadinhos<br><span>da Carol</span></h1>
-  <p class="hero-sub">Guia completo de operação da influencer IA para TikTok Shop afiliado — identidade, prompts, regras e workflows</p>
+  <p class="hero-sub">Guia completo de operação da influencer IA para TikTok Shop afiliado — identidade, prompts, regras, workflows e histórico de produtos</p>
   <div class="hero-stats">
-    <div class="hero-stat">
-      <span class="num">R$1.1K</span>
-      <span class="lbl">GMV 7 dias</span>
-    </div>
-    <div class="hero-stat">
-      <span class="num">9.43%</span>
-      <span class="lbl">CTR recorde</span>
-    </div>
-    <div class="hero-stat">
-      <span class="num">49</span>
-      <span class="lbl">itens vendidos</span>
-    </div>
-    <div class="hero-stat">
-      <span class="num">25.5K</span>
-      <span class="lbl">impressões</span>
-    </div>
+    <div class="hero-stat"><span class="num">R$1.1K+</span><span class="lbl">GMV semanal</span></div>
+    <div class="hero-stat"><span class="num">9.43%</span><span class="lbl">CTR recorde</span></div>
+    <div class="hero-stat"><span class="num">49+</span><span class="lbl">itens/semana</span></div>
+    <div class="hero-stat"><span class="num">25.5K</span><span class="lbl">impressões</span></div>
   </div>
 </div>
 
-<!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
     <a href="#identidade" class="nav-item">Identidade</a>
-    <a href="#voice-lock" class="nav-item">Voice Lock</a>
+    <a href="#voice" class="nav-item">Voice Lock</a>
     <a href="#regras" class="nav-item">Regras Fixas</a>
     <a href="#gatilhos" class="nav-item">Gatilhos</a>
     <a href="#template" class="nav-item">Template</a>
@@ -580,58 +142,57 @@
     <a href="#workflow" class="nav-item">Workflow</a>
     <a href="#produtos" class="nav-item">Produtos</a>
     <a href="#metricas" class="nav-item">Métricas</a>
+    <a href="#bugs" class="nav-item">Bugs Veo 3</a>
   </div>
 </nav>
 
-<!-- MAIN -->
 <main>
 
-<!-- 01. IDENTIDADE -->
+<!-- 01 IDENTIDADE -->
 <section id="identidade">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-num">01</span>
-      <h2 class="section-title">Identidade Visual da Carol</h2>
-      <div class="section-line"></div>
+<div class="container">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Identidade Visual da Carol</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="identity-grid">
+    <div class="identity-item">
+      <div class="label">Cabelo</div>
+      <div class="value">Preto liso longo, caindo naturalmente pelos ombros</div>
     </div>
-
-    <div class="identity-grid">
-      <div class="identity-item">
-        <div class="label">Cabelo</div>
-        <div class="value">Preto liso longo, caindo naturalmente pelos ombros</div>
-      </div>
-      <div class="identity-item">
-        <div class="label">Olhos — CRÍTICO</div>
-        <div class="value"><strong>FORCE BLUE-GREEN EYES</strong> — azuis/verdes marcantes em todos os frames. Feature mais crítica.</div>
-      </div>
-      <div class="identity-item">
-        <div class="label">Pele</div>
-        <div class="value">Warm light beige, tom uniforme do rosto às mãos. Sem diferença visível de tonalidade.</div>
-      </div>
-      <div class="identity-item">
-        <div class="label">Braços — CRÍTICO</div>
-        <div class="value"><strong>ZERO muscle definition</strong> — soft, smooth, non-athletic. Como uma mulher slim que não vai à academia.</div>
-      </div>
-      <div class="identity-item">
-        <div class="label">Corpo</div>
-        <div class="value">Slim-thick, ~1,65m, curvilínea, cintura definida. NOT overweight, NOT skinny runway model.</div>
-      </div>
-      <div class="identity-item">
-        <div class="label">Vibe geral</div>
-        <div class="value">Mulher início dos 30s, melhor amiga no FaceTime, energia carioca Zona Sul. Sem tatuagens.</div>
-      </div>
+    <div class="identity-item">
+      <div class="label">Olhos — CRÍTICO</div>
+      <div class="value"><strong>FORCE BLUE-GREEN EYES</strong> — azuis/verdes marcantes. Feature mais crítica. Mencionar em CHARACTER e SCENE ACTION.</div>
     </div>
+    <div class="identity-item">
+      <div class="label">Pele</div>
+      <div class="value">Warm light beige, tom uniforme do rosto às mãos. ONE uniform skin tone. Sem diferença visível.</div>
+    </div>
+    <div class="identity-item">
+      <div class="label">Braços — CRÍTICO</div>
+      <div class="value"><strong>ZERO muscle definition</strong> — soft, smooth, non-athletic. Como uma mulher slim que NÃO vai à academia. Repetir no SCENE ACTION.</div>
+    </div>
+    <div class="identity-item">
+      <div class="label">Corpo</div>
+      <div class="value">Slim-thick, ~1,65m, curvilínea, cintura definida. NOT overweight, NOT skinny runway model.</div>
+    </div>
+    <div class="identity-item">
+      <div class="label">Vibe geral</div>
+      <div class="value">Mulher início dos 30s, melhor amiga no FaceTime, energia carioca Zona Sul. Sem tatuagens.</div>
+    </div>
+  </div>
 
-    <div class="divider"></div>
+  <div class="divider"></div>
 
-    <h3>📸 Foto de Referência Oficial</h3>
-    <p>Arquivo: <code style="background:rgba(201,168,76,0.1);padding:2px 8px;border-radius:2px;font-family:'DM Mono',monospace;font-size:12px;color:var(--gold)">Replace_the_face_and_hair_202605062235.jpeg</code></p>
-    <p style="margin-top:8px;font-size:13px;color:var(--text-dim)">Usar sempre como Reference Image 1 no Veo 3 e como Image 2 no Nano Banana para face swaps.</p>
+  <h3>📸 Foto de Referência Oficial</h3>
+  <p>Arquivo: <code style="background:rgba(201,168,76,.1);padding:2px 8px;border-radius:2px;font-family:'DM Mono',monospace;font-size:12px;color:var(--gold)">Replace_the_face_and_hair_202605062235.jpeg</code></p>
+  <p style="margin-top:8px;font-size:13px;color:var(--text-dim)">Usar como Reference Image 1 no Veo 3 e como Image 2 no Nano Banana para face swaps.</p>
 
-    <div class="divider"></div>
-
-    <h3>Body Lock completo — copiar em todo prompt Veo 3</h3>
-    <div class="code-block">BODY (identical in every scene, NEVER change):
+  <div class="divider"></div>
+  <h3>Body Lock — copiar em todo prompt Veo 3</h3>
+  <div class="code-block">BODY (identical in every scene, NEVER change):
 Fit toned curvy body, hourglass silhouette with clearly defined narrow waist,
 flat toned stomach, medium natural bust, athletic shapely thighs,
 lifted round perky bottom,
@@ -643,25 +204,25 @@ Medium height around 1.65m, NOT overweight, NOT skinny runway model,
 healthy fit curvy. Warm light beige skin tone,
 ONE uniform tone from face to hands.
 No tattoos anywhere on the body. Clean smooth natural skin on all limbs.</div>
-  </div>
+</div>
 </section>
 
-<!-- 02. VOICE LOCK -->
-<section id="voice-lock">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-num">02</span>
-      <h2 class="section-title">Voice Lock — Sotaque Carioca</h2>
-      <div class="section-line"></div>
-    </div>
+<!-- 02 VOICE -->
+<section id="voice">
+<div class="container">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Voice Lock — Sotaque Carioca</h2>
+    <div class="section-line"></div>
+  </div>
 
-    <div class="alert">
-      <span class="alert-icon">⚠️</span>
-      <div>O bloco VOICE no Veo 3 <strong>não fixa o sotaque carioca sozinho</strong>. Para sotaque garantido, usar workflow separado: vídeo sem fala no Veo 3 + áudio no ElevenLabs + sync no CapCut.</div>
-    </div>
+  <div class="alert">
+    <span style="font-size:18px;flex-shrink:0">⚠️</span>
+    <div>O bloco VOICE no Veo 3 <strong>não fixa o sotaque carioca sozinho</strong>. Solução definitiva: gerar vídeo sem fala no Veo 3 + áudio no ElevenLabs + sync no CapCut.</div>
+  </div>
 
-    <h3>Bloco VOICE — Veo 3</h3>
-    <div class="code-block">VOICE (identical in all scenes):
+  <h3>Bloco VOICE — Veo 3</h3>
+  <div class="code-block">VOICE (identical in all scenes):
 Brazilian Portuguese with a strong warm Rio de Janeiro carioca accent.
 The speech must sound like a confident young woman from the South Zone
 of Rio de Janeiro (Zona Sul carioca): open wide vowels, melodic and
@@ -675,31 +236,33 @@ Confident excited best-friend energy, woman in early 30s talking on
 FaceTime, viral UGC influencer style. Rio de Janeiro accent ONLY —
 NOT Sao Paulo, NOT neutral Brazilian Portuguese.</div>
 
-    <h3>Prompt Lyria 3 — Áudio separado</h3>
-    <div class="code-block">Narração feminina em português brasileiro, sotaque carioca autêntico
+  <h3>Prompt Lyria 3</h3>
+  <div class="code-block">Narração feminina em português brasileiro, sotaque carioca autêntico
 (Rio de Janeiro). Chiado característico nas sibilantes (s com som de sh),
 rhotização do r aspirado. Voz natural, expressiva e informal,
 cadência descontraída e solar, entonação melódica típica do subúrbio carioca.</div>
 
-    <div class="tip">
-      <span style="font-size:18px;flex-shrink:0">💡</span>
-      <div><strong>Palavras-gatilho fonéticas cariocas:</strong> mesmo · gosto · perto · postagem — usar nessas palavras para forçar a fonética correta.</div>
-    </div>
+  <div class="tip">
+    <span style="font-size:18px;flex-shrink:0">💡</span>
+    <div><strong>Palavras-gatilho fonéticas:</strong> mesmo · gosto · perto · postagem<br>
+    <strong>Ganchos cariocas variados:</strong> gente · juro · pelo amor · para tudo · é sério · que coisa · literalmente · não acredito — variar para não repetir "mesmo".</div>
+  </div>
 
-    <h3>Configuração ElevenLabs</h3>
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-title">Parâmetros</div>
-        <p><strong>Voice:</strong> Camila / Valentina / Isabela (buscar "Brazilian")<br>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-title">ElevenLabs — Parâmetros</div>
+      <p style="font-size:13px;line-height:2.2">
+        <strong>Voice:</strong> Camila / Valentina / Isabela (buscar "Brazilian")<br>
         <strong>Model:</strong> Eleven Multilingual v2<br>
         <strong>Stability:</strong> 35%<br>
         <strong>Similarity:</strong> 75%<br>
         <strong>Style Exaggeration:</strong> 45%<br>
-        <strong>Speaker Boost:</strong> ON</p>
-      </div>
-      <div class="card">
-        <div class="card-title">Voice Instructions</div>
-        <div class="code-block" style="font-size:11px">Você é uma influencer carioca da Zona Sul do RJ.
+        <strong>Speaker Boost:</strong> ON
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-title">ElevenLabs — Voice Instructions</div>
+      <div class="code-block" style="font-size:11px">Você é uma influencer carioca da Zona Sul do RJ.
 Fale com sotaque carioca autêntico:
 - S chiado como "sh" (ESSSSSE)
 - Vogais abertas e quentes
@@ -708,124 +271,111 @@ Fale com sotaque carioca autêntico:
 - Ritmo descontraído, solar
 - 230 palavras por minuto
 - NÃO paulistano, NÃO neutro</div>
-      </div>
     </div>
   </div>
+</div>
 </section>
 
-<!-- 03. REGRAS FIXAS -->
+<!-- 03 REGRAS -->
 <section id="regras">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-num">03</span>
-      <h2 class="section-title">Regras Fixas de Produção</h2>
-      <div class="section-line"></div>
-    </div>
-
-    <ul class="rules-list">
-      <li><strong>Style Lock completo em toda cena</strong> — CHARACTER + BODY + VOICE + LIGHTING + CAMERA + COLOR GRADING + WARDROBE + LOCATION. NUNCA usar "[COLE O STYLE LOCK ACIMA]".</li>
-      <li><strong>FORCE BLUE-GREEN EYES</strong> em todo frame. Feature mais crítica — mencionar explicitamente em CHARACTER e no SCENE ACTION quando relevante.</li>
-      <li><strong>Sem hífens nas falas</strong> — usar vírgula ou ponto. Acentos SOMENTE nas falas entre aspas. Sem acentos no SCENE ACTION técnico.</li>
-      <li><strong>Hashtags banidas:</strong> #fyp #viral #foryou #paravoce — nunca usar.</li>
-      <li><strong>Hook visual forte na Cena 1</strong> — começar pelo PROBLEMA, nunca pelo produto.</li>
-      <li><strong>Estrutura de cenas:</strong> trend = 5+ cenas (~40s); produto = 2-4 cenas (16-32s).</li>
-      <li><strong>CTA obrigatório:</strong> "carrinho laranja" SÓ NA FALA. Carol aponta para baixo com dedo. NUNCA descrever o ícone no SCENE ACTION — causa bug no Veo 3.</li>
-      <li><strong>Máximo 28 palavras por cena</strong> a 230 wpm = 8 segundos. Contar sempre antes de finalizar.</li>
-      <li><strong>Body Lock reforçado</strong> em planos abertos: "Slim-thick fit Brazilian body, NOT overweight".</li>
-      <li><strong>Braços:</strong> "slim feminine arms with ZERO muscle definition — soft and natural, like a slim non-gym woman" — repetir no SCENE ACTION também.</li>
-      <li><strong>NUNCA pedir dança/swaying</strong> — vira "linguiça". Usar "natural standing pose" ou "slow elegant turn".</li>
-      <li><strong>NUNCA pedir movimentos de mãos no SCENE ACTION</strong> — embola o Veo 3. Expressão facial comunica tudo.</li>
-      <li><strong>Quando Veo 3 embolar múltiplos produtos no CTA:</strong> cena sem props, só rosto e fala.</li>
-      <li><strong>Produto flutuando/aleatório:</strong> colocar produto na bancada ao fundo em vez de na mão.</li>
-      <li><strong>Veo 3 aceita máximo 2 reference images por cena.</strong> Produtos são descritos no SCENE ACTION, não como imagem de referência.</li>
-    </ul>
+<div class="container">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Regras Fixas de Produção</h2>
+    <div class="section-line"></div>
   </div>
+
+  <ul class="rules-list">
+    <li><strong>Prompts SEMPRE completos em cada cena</strong> — NUNCA usar "[COLE O STYLE LOCK ACIMA]". Cada cena é independente no Veo 3.</li>
+    <li><strong>FORCE BLUE-GREEN EYES</strong> em todo frame. Mencionar em CHARACTER e SCENE ACTION.</li>
+    <li><strong>Sem hífens nas falas</strong> — usar vírgula ou ponto. Acentos SOMENTE nas falas entre aspas. Sem acentos no SCENE ACTION técnico.</li>
+    <li><strong>Hashtags BANIDAS:</strong> #fyp #viral #foryou #paravoce — nunca usar.</li>
+    <li><strong>Hook visual forte na Cena 1</strong> — começar pelo PROBLEMA, nunca pelo produto.</li>
+    <li><strong>Estrutura:</strong> trend = 5-11 cenas; produto = 2-4 cenas (16-32s).</li>
+    <li><strong>CTA:</strong> "carrinho laranja" SÓ NA FALA. Carol aponta para baixo. NUNCA descrever ícone no SCENE ACTION — causa bug.</li>
+    <li><strong>Máximo 28 palavras por cena</strong> a 230 wpm = 8 segundos.</li>
+    <li><strong>Braços:</strong> "slim feminine arms with ZERO muscle definition" — repetir no SCENE ACTION também.</li>
+    <li><strong>NUNCA pedir dança/swaying</strong> — vira "linguiça". Usar "natural standing pose" ou "slow elegant turn".</li>
+    <li><strong>NUNCA movimentos de mãos no SCENE ACTION</strong> — embola o Veo 3. Expressão facial comunica tudo.</li>
+    <li><strong>CTA com múltiplos produtos:</strong> cena sem props, só rosto e fala.</li>
+    <li><strong>Produto flutuando:</strong> colocar produto na bancada ao fundo em vez de na mão.</li>
+    <li><strong>Veo 3 aceita máx 2 reference images por cena.</strong> Produtos descritos no SCENE ACTION.</li>
+    <li><strong>Entrega padrão obrigatória:</strong> prompts completos + referências + descrição + hashtags em uma resposta só.</li>
+    <li><strong>Frasco aparece apenas nas cenas</strong> onde a narrativa chega no produto — não em todas as cenas.</li>
+    <li><strong>Batom padrão:</strong> nude glossy lips — nunca dark lips salvo pedido explícito.</li>
+    <li><strong>Nano Banana:</strong> sempre usar foto Carol gerada por IA como input — nunca foto original para evitar bloqueio de celebridade.</li>
+  </ul>
+</div>
 </section>
 
-<!-- 04. GATILHOS -->
+<!-- 04 GATILHOS -->
 <section id="gatilhos">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-num">04</span>
-      <h2 class="section-title">3 Gatilhos de Venda</h2>
-      <div class="section-line"></div>
+<div class="container">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">3 Gatilhos de Venda</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="card-grid">
+    <div class="trigger-card">
+      <span class="trigger-emoji">💋</span>
+      <div class="trigger-name">Companheirismo Sexual</div>
+      <div class="trigger-desc">Mostrar o efeito nos <strong>OUTROS</strong>, não características do produto. "Dois homens vieram me perguntar o cheiro." Foco em conquista, admiração e atenção gerada.</div>
     </div>
-
-    <div class="card-grid">
-      <div class="trigger-card">
-        <span class="trigger-emoji">💋</span>
-        <div class="trigger-name">Companheirismo Sexual</div>
-        <div class="trigger-desc">Mostrar o efeito nos <strong>OUTROS</strong>, não características do produto. "Dois homens vieram me perguntar o cheiro." Foco em conquista, admiração, atenção que o produto gera.</div>
-      </div>
-      <div class="trigger-card">
-        <span class="trigger-emoji">🛡️</span>
-        <div class="trigger-name">Cuidado e Proteção</div>
-        <div class="trigger-desc">Aprofundar a <strong>CONSEQUÊNCIA de não usar</strong>. "Sair sem protetor solar num país tropical é crime contra a sua pele." Medo das consequências negativas.</div>
-      </div>
-      <div class="trigger-card">
-        <span class="trigger-emoji">🔓</span>
-        <div class="trigger-name">Liberdade da Dor/Medo</div>
-        <div class="trigger-desc">Criar cenário de medo ANTES de apresentar o produto. "Imagina chegar no verão com celulite depois de meses treinando." Solução como libertação.</div>
-      </div>
+    <div class="trigger-card">
+      <span class="trigger-emoji">🛡️</span>
+      <div class="trigger-name">Cuidado e Proteção</div>
+      <div class="trigger-desc">Aprofundar a <strong>CONSEQUÊNCIA de não usar</strong>. "Sair sem protetor solar num país tropical." Medo das consequências negativas.</div>
     </div>
-
-    <div class="divider"></div>
-
-    <h3>Dicas de Script TikTok Shop (Oficial)</h3>
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-title">Estrutura do vídeo</div>
-        <ul style="list-style:none;font-size:13px;line-height:2">
-          <li>✅ Começar pelo PROBLEMA, nunca pelo produto</li>
-          <li>✅ Hook forte nos primeiros 2s (movimento, funcionalidade, desejo)</li>
-          <li>✅ Desconto direto no início</li>
-          <li>✅ Enfatizar ofertas limitadas e preços baixos</li>
-          <li>✅ Foco nos benefícios e valor</li>
-          <li>✅ CTA com comando explícito — cérebro precisa de direção</li>
-          <li>✅ Vídeos 30-60s | Energia contagiante</li>
-        </ul>
-      </div>
-      <div class="card">
-        <div class="card-title">Variações de gancho carioca</div>
-        <p style="font-size:13px;line-height:2.2">
-          <span class="tag tag-gold">mesmo</span>
-          <span class="tag tag-gold">gente</span>
-          <span class="tag tag-gold">juro</span>
-          <span class="tag tag-gold">pelo amor</span>
-          <span class="tag tag-gold">para tudo</span>
-          <span class="tag tag-gold">é sério</span>
-          <span class="tag tag-gold">que coisa</span>
-          <span class="tag tag-gold">literalmente</span>
-          <span class="tag tag-gold">não acredito</span>
-        </p>
-        <div class="tip" style="margin-top:12px">
-          <span>💡</span>
-          <div style="font-size:12px">Variar os ganchos para não repetir sempre "mesmo". Cada vídeo deve soar diferente.</div>
-        </div>
-      </div>
+    <div class="trigger-card">
+      <span class="trigger-emoji">🔓</span>
+      <div class="trigger-name">Liberdade da Dor/Medo</div>
+      <div class="trigger-desc">Criar cenário de medo ANTES de apresentar solução. "Imagina chegar no verão com celulite." O produto como libertação.</div>
     </div>
   </div>
+
+  <div class="divider"></div>
+  <h3>Estrutura de Script TikTok Shop</h3>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-title">Checklist obrigatório</div>
+      <ul style="list-style:none;font-size:13px;line-height:2.2">
+        <li>✅ Começar pelo PROBLEMA, nunca produto</li>
+        <li>✅ Hook forte nos primeiros 2s</li>
+        <li>✅ Desconto direto no início</li>
+        <li>✅ Ofertas limitadas + preços baixos</li>
+        <li>✅ Foco nos benefícios e valor</li>
+        <li>✅ CTA com comando explícito</li>
+        <li>✅ Vídeos 30-60s | Energia contagiante</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Argumentos poderosos por nicho</div>
+      <ul style="list-style:none;font-size:13px;line-height:2.2">
+        <li>🌸 <strong>Perfume:</strong> inspirado em X que custa R$XXX</li>
+        <li>🧴 <strong>Skincare:</strong> % clientes com resultado comprovado</li>
+        <li>💄 <strong>Maquiagem:</strong> efeito nos outros (quem perguntou)</li>
+        <li>👗 <strong>Moda:</strong> show completo do look vestindo</li>
+        <li>💪 <strong>Corpo:</strong> antes/depois + dados científicos</li>
+      </ul>
+    </div>
+  </div>
+</div>
 </section>
 
-<!-- 05. TEMPLATE -->
+<!-- 05 TEMPLATE -->
 <section id="template">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-num">05</span>
-      <h2 class="section-title">Template Completo de Prompt Veo 3</h2>
-      <div class="section-line"></div>
-    </div>
+<div class="container">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Template Completo — Prompt Veo 3</h2>
+    <div class="section-line"></div>
+  </div>
 
-    <div class="highlight">
-      Copiar o template completo abaixo para CADA CENA. Nunca abreviar ou referenciar cenas anteriores. O Veo 3 trata cada cena de forma independente.
-    </div>
+  <div class="highlight">Copiar o template completo para CADA CENA. Nunca abreviar. O Veo 3 trata cada cena de forma independente.</div>
 
-    <div class="template-section">
-      <div class="template-header">
-        <span>STYLE LOCK — TEMPLATE COMPLETO</span>
-      </div>
-      <div class="template-body">
-        <div class="code-block">STYLE LOCK — DO NOT CHANGE BETWEEN SCENES:
+  <div class="code-block">STYLE LOCK — DO NOT CHANGE BETWEEN SCENES:
 
 CHARACTER (match reference image exactly):
 Long straight black hair, striking blue-green eyes
@@ -846,14 +396,13 @@ ONE uniform tone from face to hands.
 No tattoos anywhere on the body. Clean smooth natural skin on all limbs.
 
 VOICE (identical in all scenes):
-Brazilian Portuguese with a strong warm Rio de Janeiro carioca accent.
-[... bloco voice completo ...]
+[... bloco voice carioca completo ...]
 
 AUDIO (Lyria 3 — configure separately):
 [... bloco Lyria 3 ...]
 
 LIGHTING (identical in all scenes):
-[... descrever lighting do cenário escolhido ...]
+[... descrever lighting do cenário ...]
 
 CAMERA (identical in all scenes):
 Handheld iPhone selfie style, vertical 9:16 framing,
@@ -864,361 +413,324 @@ COLOR GRADING (identical in all scenes):
 [... warm tones do cenário ...]
 
 WARDROBE (identical in all scenes):
-[... look completo da Carol para este vídeo ...]
+[... look completo ...]
+Hair loose and straight. Natural glowing makeup, nude glossy lips.
+No tattoos anywhere on body. Clean smooth skin on all limbs.
 
 LOCATION (identical in all scenes):
 [... descrição detalhada do cenário ...]
 
 SCENE ACTION:
-[... ação específica desta cena ...]
 She stands facing the camera with [expressão].
-[descrição do produto se houver]
+[produto se houver: descrever cor, formato, texto do label]
 Other hand rests completely naturally at her side.
 NO gestures, NO extra movements, NO pointing whatsoever.
+Slim feminine arms — NOT athletic, NOT muscular.
 Static natural pose only. Medium shot from waist up. NOT overweight.
 Fast energetic lip sync at 230 wpm, no subtitles, saying in Brazilian Portuguese:
-'[FALA DA CENA — máximo 28 palavras]'</div>
-      </div>
-    </div>
+'[FALA — máximo 28 palavras]'</div>
 
-    <div class="alert">
-      <span class="alert-icon">🚫</span>
-      <div><strong>Nunca usar no SCENE ACTION:</strong> movimentos de mão complexos · contagem de dedos · segurar múltiplos produtos · dança · swaying · "apontar para o produto" no CTA (só "apontar para baixo").</div>
-    </div>
+  <div class="alert">
+    <span style="font-size:18px;flex-shrink:0">🚫</span>
+    <div><strong>NUNCA no SCENE ACTION:</strong> movimentos de mão · contagem de dedos · múltiplos produtos · dança · swaying · descrever ícone do carrinho · gestos complexos</div>
   </div>
+</div>
 </section>
 
-<!-- 06. CENÁRIOS -->
+<!-- 06 CENARIOS -->
 <section id="cenarios">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-num">06</span>
-      <h2 class="section-title">Cenários Disponíveis</h2>
-      <div class="section-line"></div>
-    </div>
-
-    <table class="scenario-table">
-      <thead>
-        <tr>
-          <th>Cenário</th>
-          <th>Lighting</th>
-          <th>Melhor para</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Sala luxuosa dourada</strong></td>
-          <td>LED strips dourados, mármore</td>
-          <td>Perfumes, skincare, produtos premium</td>
-        </tr>
-        <tr>
-          <td><strong>Banheiro luxuoso dourado</strong></td>
-          <td>Espelho iluminado LED</td>
-          <td>Maquiagem, skincare, cabelo</td>
-        </tr>
-        <tr>
-          <td><strong>Quarto luxuoso neutro</strong></td>
-          <td>Pendant lights dourados, LED morno</td>
-          <td>Skincare, produtos de cuidado</td>
-        </tr>
-        <tr>
-          <td><strong>Closet luxuoso branco</strong></td>
-          <td>Lustre dourado circular, luz natural</td>
-          <td>Moda, maquiagem, acessórios</td>
-        </tr>
-        <tr>
-          <td><strong>Calçada arborizada</strong></td>
-          <td>Luz natural filtrada, verde ao fundo</td>
-          <td>Perfumes, moda casual</td>
-        </tr>
-        <tr>
-          <td><strong>Corredor de shopping</strong></td>
-          <td>Spotlights brancos, accent roxo</td>
-          <td>Perfumes, acessórios</td>
-        </tr>
-        <tr>
-          <td><strong>Mansão com piscina</strong></td>
-          <td>Pôr do sol dourado/rosado, fire pit</td>
-          <td>Perfumes premium, look sofisticado</td>
-        </tr>
-        <tr>
-          <td><strong>Academia</strong></td>
-          <td>Janelas verdes, gym atmosphere</td>
-          <td>Fitness, skincare, corpo</td>
-        </tr>
-        <tr>
-          <td><strong>Resort com piscina</strong></td>
-          <td>Luz tropical intensa, turquesa</td>
-          <td>Protetor solar, saída de praia</td>
-        </tr>
-        <tr>
-          <td><strong>Bar com jogo do Brasil</strong></td>
-          <td>TVs coloridas, iluminação festiva</td>
-          <td>Moda esportiva, produtos Brasil</td>
-        </tr>
-        <tr>
-          <td><strong>Restaurante fino</strong></td>
-          <td>Candlelight, ambiente dourado</td>
-          <td>Perfumes, produtos de conquista</td>
-        </tr>
-        <tr>
-          <td><strong>Jardim luxuoso externo</strong></td>
-          <td>String lights, tarde dourada</td>
-          <td>Perfumes, moda, eventos</td>
-        </tr>
-        <tr>
-          <td><strong>Copacabana boardwalk</strong></td>
-          <td>Luz praia intensa, azul do mar</td>
-          <td>Perfumes, moda carioca</td>
-        </tr>
-      </tbody>
-    </table>
+<div class="container">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Cenários Disponíveis</h2>
+    <div class="section-line"></div>
   </div>
+
+  <table class="table">
+    <thead>
+      <tr><th>Cenário</th><th>Lighting</th><th>Melhor para</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Sala luxuosa dourada</strong></td><td>LED strips dourados, mármore</td><td>Perfumes, skincare premium</td></tr>
+      <tr><td><strong>Banheiro luxuoso dourado</strong></td><td>Espelho iluminado LED</td><td>Maquiagem, skincare, cabelo</td></tr>
+      <tr><td><strong>Quarto luxuoso neutro</strong></td><td>Pendant lights dourados</td><td>Skincare, produtos de cuidado</td></tr>
+      <tr><td><strong>Closet luxuoso branco</strong></td><td>Lustre dourado circular</td><td>Moda, maquiagem, acessórios</td></tr>
+      <tr><td><strong>Calçada arborizada</strong></td><td>Luz natural filtrada, verde</td><td>Perfumes, moda casual</td></tr>
+      <tr><td><strong>Corredor de shopping</strong></td><td>Spotlights brancos, accent roxo</td><td>Perfumes, acessórios</td></tr>
+      <tr><td><strong>Mansão com piscina (dia)</strong></td><td>Luz tropical intensa</td><td>Protetor solar, saída de praia</td></tr>
+      <tr><td><strong>Mansão com piscina (noite)</strong></td><td>LED azul piscina + city lights</td><td>Perfumes sofisticados, look noturno</td></tr>
+      <tr><td><strong>Academia</strong></td><td>Janelas verdes, gym atmosphere</td><td>Fitness, corpo, skincare</td></tr>
+      <tr><td><strong>Resort com piscina</strong></td><td>Luz tropical, turquesa</td><td>Protetor solar, saída de praia</td></tr>
+      <tr><td><strong>Bar com jogo do Brasil</strong></td><td>TVs coloridas, festivo</td><td>Moda esportiva, produtos Brasil</td></tr>
+      <tr><td><strong>Restaurante fino</strong></td><td>Candlelight dourado</td><td>Perfumes, Dia dos Namorados</td></tr>
+      <tr><td><strong>Jardim luxuoso externo</strong></td><td>String lights, tarde dourada</td><td>Perfumes, moda, eventos</td></tr>
+      <tr><td><strong>Copacabana boardwalk</strong></td><td>Luz praia intensa, azul mar</td><td>Moda, perfumes carioca</td></tr>
+      <tr><td><strong>Café elegante</strong></td><td>Luz natural janelas, caramel</td><td>Storytelling, relatos, skincare</td></tr>
+      <tr><td><strong>Rooftop minimalista noturno</strong></td><td>LED azul piscina + city lights</td><td>Perfumes premium, look sofisticado</td></tr>
+    </tbody>
+  </table>
+</div>
 </section>
 
-<!-- 07. WORKFLOW -->
+<!-- 07 WORKFLOW -->
 <section id="workflow">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-num">07</span>
-      <h2 class="section-title">Workflow de Produção</h2>
-      <div class="section-line"></div>
-    </div>
+<div class="container">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">Workflow de Produção</h2>
+    <div class="section-line"></div>
+  </div>
 
-    <h3>Ferramentas</h3>
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-title">🎬 Veo 3</div>
-        <p style="font-size:13px">Geração de vídeo principal. Acessar via SYNTX.AI (perfil 1439) ou VEO profiles 2033-2051. Máx 2 reference images por cena.</p>
-      </div>
-      <div class="card">
-        <div class="card-title">🍌 Nano Banana</div>
-        <p style="font-size:13px">Face swap, body reshape, Carol vestindo produto (flat lay → Carol vestindo). Usar sempre foto Carol gerada por IA para evitar bloqueio de celebridade.</p>
-      </div>
-      <div class="card">
-        <div class="card-title">✂️ CapCut</div>
-        <p style="font-size:13px">Edição e montagem. Sync de áudio externo com vídeo sem fala. Perfis 2084-2102.</p>
-      </div>
-      <div class="card">
-        <div class="card-title">🎙️ ElevenLabs</div>
-        <p style="font-size:13px">TTS com voz brasileira carioca. Disponível via SYNTX.AI. Usar quando Veo 3 não fixar o sotaque.</p>
-      </div>
-    </div>
+  <div class="card-grid">
+    <div class="card"><div class="card-title">🎬 Veo 3</div><p style="font-size:13px">Geração de vídeo principal. SYNTX.AI perfil 1439 ou VEO profiles 2033-2051. Máx 2 reference images por cena.</p></div>
+    <div class="card"><div class="card-title">🍌 Nano Banana</div><p style="font-size:13px">Face swap, body reshape, Carol com produto. SEMPRE usar foto Carol gerada por IA como input — nunca foto original.</p></div>
+    <div class="card"><div class="card-title">✂️ CapCut</div><p style="font-size:13px">Edição e montagem. Sync áudio externo com vídeo sem fala. Perfis 2084-2102.</p></div>
+    <div class="card"><div class="card-title">🎙️ ElevenLabs</div><p style="font-size:13px">TTS voz brasileira carioca. Via SYNTX.AI. Usar quando Veo 3 não fixar sotaque.</p></div>
+  </div>
 
-    <div class="divider"></div>
-
-    <h3>Workflow Nano Banana — Face Swap</h3>
-    <div class="code-block">TASK: Replace ONLY the face and hair of the woman in image 1
+  <div class="divider"></div>
+  <h3>Nano Banana — Face Swap</h3>
+  <div class="code-block">TASK: Replace ONLY the face and hair of the woman in image 1
 with the exact face and hair of the woman in image 2.
 
 FACE AND HAIR (copy exactly from image 2):
-- Same oval face, same striking blue-green eyes
-  (FORCE BLUE-GREEN EYES, most critical feature)
+- Same oval face, same striking blue-green eyes (FORCE BLUE-GREEN EYES)
 - Same long straight black hair falling naturally past the shoulders
-- Same eyebrows, same lips, same natural makeup look
-- Warm light beige skin tone seamlessly matching face to body.
-  ONE uniform skin tone from face to hands. No visible difference.
+- Same eyebrows, same lips, same natural makeup
+- Warm light beige skin tone, ONE uniform tone from face to hands.
 
 KEEP ABSOLUTELY EVERYTHING FROM IMAGE 1 UNCHANGED:
 [descrever roupa, pose, fundo, acessórios]
 
 CRITICAL: Face and hair swap only.
-Warm light beige skin tone throughout.
 Slim feminine arms, NO muscle definition, soft and natural.
 Photorealistic seamless result, no visible blend lines.</div>
 
-    <h3>Workflow Nano Banana — Correção Tom de Pele</h3>
-    <div class="code-block">TASK: Adjust ONLY the skin tone of the face and neck
+  <h3>Nano Banana — Correção Tom de Pele</h3>
+  <div class="code-block">TASK: Adjust ONLY the skin tone of the face and neck
 to match the warm light beige skin tone of the body.
+ONE single uniform warm light beige skin tone head to toe.
+Keep face, eyes, hair, expression, outfit unchanged.
+Subtle natural correction only. Photorealistic.</div>
 
-SKIN TONE CORRECTION:
-- Match face, neck and décolleté to warm light beige
-  tone visible on arms, chest and legs
-- ONE single uniform warm light beige skin tone head to toe
-- Keep face, eyes, hair, expression, outfit unchanged
-
-CRITICAL: Subtle natural correction only. Photorealistic.</div>
-
-    <h3>Workflow Carol com Produto (flat lay)</h3>
-    <div class="code-block">TASK: Keep the exact face and hair of the woman in image 1
+  <h3>Nano Banana — Carol com Produto (flat lay)</h3>
+  <div class="code-block">TASK: Keep the exact face and hair of the woman in image 1
 but dress her in the outfit/product from image 2.
 
-FACE AND HAIR: [copy from image 1]
-
-OUTFIT: [describe product/outfit from image 2 in detail]
-
-BODY: Slim-thick fit Brazilian body, hourglass silhouette,
-slim feminine arms ZERO muscle definition, soft and natural.
+FACE AND HAIR: [copy from image 1 — FORCE BLUE-GREEN EYES]
+OUTFIT: [describe product from image 2 in detail — cor, textura, nome]
+BODY: Slim-thick fit Brazilian body, slim feminine arms ZERO muscle definition.
 Warm light beige skin tone. No tattoos.
-
 SETTING: [describe desired scene]
 
-CRITICAL: Keep exact face from image 1.
-Slim feminine arms — NOT athletic, NOT muscular.
-Photorealistic seamless result.</div>
-  </div>
+CRITICAL: Slim feminine arms NOT athletic. Photorealistic.</div>
+</div>
 </section>
 
-<!-- 08. PRODUTOS -->
+<!-- 08 PRODUTOS -->
 <section id="produtos">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-num">08</span>
-      <h2 class="section-title">Histórico de Produtos</h2>
-      <div class="section-line"></div>
-    </div>
-
-    <h3>🏆 Top Performers (confirmados com vendas)</h3>
-    <div style="margin-bottom:24px">
-      <span class="product-tag"><span class="dot"></span>Body Splash Amber Royale R$19,90 ⭐⭐⭐</span>
-      <span class="product-tag"><span class="dot"></span>Máscara Ruby Rose Trópico ⭐⭐⭐</span>
-      <span class="product-tag"><span class="dot"></span>Kit Ritual Hidratação das Gueixas ⭐⭐</span>
-      <span class="product-tag"><span class="dot"></span>Geleia Facial Kokeshi ⭐</span>
-    </div>
-
-    <h3>Perfumes / Body Splash</h3>
-    <div style="margin-bottom:24px">
-      <span class="product-tag"><span class="dot" style="background:#C9A84C"></span>Amber Royale Primacel R$19,90</span>
-      <span class="product-tag"><span class="dot" style="background:#C9A84C"></span>Pure Grace Barbour's R$40</span>
-      <span class="product-tag"><span class="dot" style="background:#C9A84C"></span>Lavine by Primacial R$94,90</span>
-      <span class="product-tag"><span class="dot" style="background:#C9A84C"></span>Onlyou Collection Nº 830 R$27</span>
-    </div>
-
-    <h3>Skincare / Beleza</h3>
-    <div style="margin-bottom:24px">
-      <span class="product-tag"><span class="dot" style="background:#5CC4C4"></span>Kit Anti-Acne Principia R$155</span>
-      <span class="product-tag"><span class="dot" style="background:#5CC4C4"></span>Geleia Facial Kokeshi R$23</span>
-      <span class="product-tag"><span class="dot" style="background:#5CC4C4"></span>Protetor Solar Hidrabene FPS70 R$29,90</span>
-      <span class="product-tag"><span class="dot" style="background:#5CC4C4"></span>Creme Popozuda R$89,90</span>
-      <span class="product-tag"><span class="dot" style="background:#5CC4C4"></span>Óleo Melaleuca Tea Tree</span>
-    </div>
-
-    <h3>Maquiagem</h3>
-    <div style="margin-bottom:24px">
-      <span class="product-tag"><span class="dot" style="background:#E88A9A"></span>Máscara Ruby Rose Trópico</span>
-      <span class="product-tag"><span class="dot" style="background:#E88A9A"></span>My Dream Palette Loverain R$115</span>
-      <span class="product-tag"><span class="dot" style="background:#E88A9A"></span>Hello Mini Lip Glow R$11,99</span>
-    </div>
-
-    <h3>Moda / Outros</h3>
-    <div>
-      <span class="product-tag"><span class="dot" style="background:#8AB4E8"></span>Cachecol Gigante 1,80x70cm R$30</span>
-      <span class="product-tag"><span class="dot" style="background:#8AB4E8"></span>Camisa do Brasil Nike/CBF</span>
-    </div>
-
-    <div class="divider"></div>
-
-    <h3>Descrição + Hashtags padrão — Body Splash</h3>
-    <div class="code-block">Esse body splash para tudo onde você chegar 💛✨
-Amber Royale inspirado no Royal Amber por R$19,90!
-Carrinho laranja aqui embaixo 🛒👇
-
-#bodysplash #amberroyale #royalamber #perfumebarato
-#achadinhosdacarol #perfumefeminino #tiktokshopbrasil #cheirosa</div>
-
-    <div class="alert">
-      <span class="alert-icon">🚫</span>
-      <div><strong>Hashtags BANIDAS:</strong> #fyp #viral #foryou #paravoce — nunca usar em nenhum vídeo.</div>
-    </div>
+<div class="container">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <h2 class="section-title">Histórico de Produtos</h2>
+    <div class="section-line"></div>
   </div>
+
+  <h3>🏆 Top Performers</h3>
+  <div style="margin-bottom:20px">
+    <span class="product-tag"><span class="dot"></span>Body Splash Amber Royale R$19,90 ⭐⭐⭐ (33 vendas/7D)</span>
+    <span class="product-tag"><span class="dot"></span>Máscara Ruby Rose Trópico ⭐⭐⭐ (34 vendas/7D)</span>
+    <span class="product-tag"><span class="dot"></span>Cachecol Gigante R$30 ⭐⭐ (5 vendas em estreia)</span>
+    <span class="product-tag"><span class="dot"></span>Blusa Brasil R$27 ⭐⭐ (3 vendas em estreia)</span>
+  </div>
+
+  <h3>Perfumes / Body Splash Femininos</h3>
+  <div style="margin-bottom:16px">
+    <span class="product-tag"><span class="dot" style="background:#C9A84C"></span>Amber Royale Primacel R$19,90 (Royal Amber)</span>
+    <span class="product-tag"><span class="dot" style="background:#C9A84C"></span>Pure Grace Barbour's R$40 (Palatine)</span>
+    <span class="product-tag"><span class="dot" style="background:#C9A84C"></span>Lavine Primacial R$94,90 (Delina)</span>
+    <span class="product-tag"><span class="dot" style="background:#C9A84C"></span>Onlyou Nº 830 R$27 (La Vie Est Belle)</span>
+    <span class="product-tag"><span class="dot" style="background:#C9A84C"></span>AYRA Primacial R$19,90 (Yara Lattafa)</span>
+    <span class="product-tag"><span class="dot" style="background:#C9A84C"></span>Delight Barbour's R$40 (Delina)</span>
+  </div>
+
+  <h3>Body Splash Masculinos — Dia dos Namorados</h3>
+  <div style="margin-bottom:16px">
+    <span class="product-tag"><span class="dot" style="background:#8AB4E8"></span>Barbarius Primacial R$39,90 (Sauvage)</span>
+    <span class="product-tag"><span class="dot" style="background:#8AB4E8"></span>Midtown Primacial R$39,90 (212)</span>
+    <span class="product-tag"><span class="dot" style="background:#8AB4E8"></span>Enigma Primacial R$39,90 (Myslf)</span>
+  </div>
+
+  <h3>Skincare / Beleza</h3>
+  <div style="margin-bottom:16px">
+    <span class="product-tag"><span class="dot" style="background:#5CC4C4"></span>Kit Anti-Acne Principia R$155</span>
+    <span class="product-tag"><span class="dot" style="background:#5CC4C4"></span>Geleia Facial Kokeshi R$23</span>
+    <span class="product-tag"><span class="dot" style="background:#5CC4C4"></span>Protetor Solar Hidrabene FPS70 R$29,90</span>
+    <span class="product-tag"><span class="dot" style="background:#5CC4C4"></span>Creme Popozuda R$89,90</span>
+    <span class="product-tag"><span class="dot" style="background:#5CC4C4"></span>Lisoterapia 10em1 R$20</span>
+    <span class="product-tag"><span class="dot" style="background:#5CC4C4"></span>Óleo Melaleuca Tea Tree</span>
+  </div>
+
+  <h3>Maquiagem</h3>
+  <div style="margin-bottom:16px">
+    <span class="product-tag"><span class="dot" style="background:#E88A9A"></span>Máscara Ruby Rose Trópico</span>
+    <span class="product-tag"><span class="dot" style="background:#E88A9A"></span>My Dream Palette Loverain R$115</span>
+    <span class="product-tag"><span class="dot" style="background:#E88A9A"></span>Hello Mini Lip Glow R$11,99</span>
+  </div>
+
+  <h3>Moda / Outros</h3>
+  <div style="margin-bottom:16px">
+    <span class="product-tag"><span class="dot" style="background:#A8C4A8"></span>Cachecol Gigante 1,80x70cm R$30</span>
+    <span class="product-tag"><span class="dot" style="background:#A8C4A8"></span>Camisa do Brasil 5 cores R$27</span>
+  </div>
+
+  <div class="divider"></div>
+  <h3>Hashtags BANIDAS em todos os vídeos</h3>
+  <div class="alert">
+    <span style="font-size:18px;flex-shrink:0">🚫</span>
+    <div>#fyp · #viral · #foryou · #paravoce — nunca usar em nenhum vídeo.</div>
+  </div>
+</div>
 </section>
 
-<!-- 09. MÉTRICAS -->
+<!-- 09 METRICAS -->
 <section id="metricas">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-num">09</span>
-      <h2 class="section-title">Métricas e Estratégia</h2>
-      <div class="section-line"></div>
+<div class="container">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <h2 class="section-title">Métricas e Estratégia</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-title">📊 Semana 13-19/mai/2026</div>
+      <ul style="list-style:none;font-size:13px;line-height:2.2">
+        <li><strong>Amber Royale 7D:</strong> R$697,67 · 33 vendas</li>
+        <li><strong>Máscara Ruby Rose 7D:</strong> R$551,60 · 34 vendas</li>
+        <li><strong>Impressões:</strong> 25.5K (+271%)</li>
+        <li><strong>Cliques:</strong> 2.0K (+1K%)</li>
+        <li><strong>Nível atual:</strong> Nível 1</li>
+        <li><strong>Meta Nível 2:</strong> R$3.779 GMV total</li>
+      </ul>
     </div>
-
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-title">📊 Semana 9-15/mai/2026</div>
-        <ul style="list-style:none;font-size:13px;line-height:2.2">
-          <li><strong>GMV total 7D:</strong> R$1.100</li>
-          <li><strong>Itens vendidos:</strong> 49</li>
-          <li><strong>Comissão estimada:</strong> R$122,70</li>
-          <li><strong>Impressões:</strong> 25.5K (+271%)</li>
-          <li><strong>Cliques:</strong> 2.0K (+1K%)</li>
-        </ul>
-      </div>
-      <div class="card">
-        <div class="card-title">⭐ Vídeo Estrela — Amber Royale</div>
-        <ul style="list-style:none;font-size:13px;line-height:2.2">
-          <li><strong>CTR:</strong> 9.43% (média TikTok: 1-3%)</li>
-          <li><strong>CTOR:</strong> 3.18%</li>
-          <li><strong>Views 7D:</strong> 4.3K</li>
-          <li><strong>Vendas 7D:</strong> 13 unidades</li>
-          <li><strong>GMV 7D:</strong> R$269,45</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <h3>💡 Estratégia de Escala</h3>
-    <div class="highlight">
-      <strong>Tráfego pago (Spark Ads):</strong> ativar quando um único vídeo atingir 20+ vendas. O vídeo do Amber Royale já passou desse threshold. CTR de 9% com conversão consistente é o sinal para impulsionar.
-    </div>
-
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-title">Spark Ads — Como ativar</div>
-        <ol style="font-size:13px;line-height:2;padding-left:20px">
-          <li>Acessar TikTok Ads Manager (ads.tiktok.com)</li>
-          <li>Criar campanha objetivo "Vendas de produto"</li>
-          <li>Escolher "Spark Ads" no criativo</li>
-          <li>Autorizar vídeo da conta</li>
-          <li>Público: Mulheres 18-45, Brasil, beleza/perfume</li>
-          <li>Orçamento: R$30-50/dia</li>
-          <li>Deixar rodar 3 dias antes de avaliar</li>
-        </ol>
-      </div>
-      <div class="card">
-        <div class="card-title">Meta de progressão</div>
-        <ul style="list-style:none;font-size:13px;line-height:2.2">
-          <li>🥉 <strong>Nível atual:</strong> Nível 1</li>
-          <li>🎯 <strong>Meta Nível 2:</strong> R$3.779 GMV</li>
-          <li>📈 <strong>Faltam:</strong> ~R$2.679</li>
-          <li>📅 <strong>Ritmo atual:</strong> R$157/dia</li>
-          <li>📌 <strong>Prazo estimado:</strong> ~17 dias no ritmo atual</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <h3>Nichos que estão funcionando (confirmar com vendas)</h3>
-    <div style="display:flex;flex-wrap:wrap;gap:8px">
-      <span class="tag tag-gold">🧴 Skincare</span>
-      <span class="tag tag-gold">💦 Body Splash</span>
-      <span class="tag tag-teal">💄 Maquiagem</span>
-      <span class="tag tag-teal">🌿 Cuidados capilares</span>
-      <span class="tag tag-rose">👗 Moda</span>
+    <div class="card">
+      <div class="card-title">⭐ Vídeo Estrela — Amber Royale</div>
+      <ul style="list-style:none;font-size:13px;line-height:2.2">
+        <li><strong>CTR:</strong> 9.43% (média TikTok: 1-3%)</li>
+        <li><strong>CTOR:</strong> 3.18%</li>
+        <li><strong>Views 7D:</strong> 4.3K</li>
+        <li><strong>Vendas 7D:</strong> 13+ unidades</li>
+        <li><strong>Publicado:</strong> 13/mai/2026 · 32s</li>
+      </ul>
     </div>
   </div>
+
+  <div class="divider"></div>
+  <h3>Spark Ads — Quando ativar</h3>
+  <div class="highlight">Ativar quando um único vídeo atingir <strong>20+ vendas</strong>. O Amber Royale já ultrapassou esse threshold. CTR de 9%+ com conversão consistente = sinal para impulsionar.</div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-title">Como configurar Spark Ads</div>
+      <ol style="font-size:13px;line-height:2.2;padding-left:20px">
+        <li>TikTok Ads Manager (ads.tiktok.com)</li>
+        <li>Campanha objetivo "Vendas de produto"</li>
+        <li>Criativo: "Spark Ads"</li>
+        <li>Autorizar vídeo da conta</li>
+        <li>Público: Mulheres 18-45, Brasil, beleza/perfume</li>
+        <li>Orçamento: R$30-50/dia</li>
+        <li>Aguardar 3 dias antes de avaliar</li>
+      </ol>
+    </div>
+    <div class="card">
+      <div class="card-title">⚠️ Tráfego pago para afiliado</div>
+      <p style="font-size:13px;line-height:1.8;color:var(--text-dim)">Com comissão ~11% e AOV de R$22, o retorno de R$27/dia não cobre R$50/dia de anúncio. <strong>Spark Ads só vale quando você tiver produto próprio com margem 40%+</strong>, ou quando a comissão do produto for excepcionalmente alta. Por enquanto: orgânico é o melhor ROI.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 10 BUGS -->
+<section id="bugs">
+<div class="container">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <h2 class="section-title">Bugs Conhecidos do Veo 3</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr><th>Problema</th><th>Causa</th><th>Solução</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Carol vira "linguiça"</strong></td>
+        <td>Pediu dança, sway ou hip movement</td>
+        <td>Usar "natural standing pose" ou "slow elegant turn"</td>
+      </tr>
+      <tr>
+        <td><strong>Produto flutuando no ar</strong></td>
+        <td>Carol segurava múltiplos objetos + gesticulava</td>
+        <td>Produto na bancada ao fundo OU cena sem props</td>
+      </tr>
+      <tr>
+        <td><strong>Produtos aleatórios no CTA</strong></td>
+        <td>Múltiplos produtos na mão final</td>
+        <td>CTA sem nenhum prop — só rosto e fala</td>
+      </tr>
+      <tr>
+        <td><strong>Braços musculosos</strong></td>
+        <td>Não reforçou no SCENE ACTION</td>
+        <td>Adicionar "Slim feminine arms — NOT athletic, NOT muscular" no SCENE ACTION</td>
+      </tr>
+      <tr>
+        <td><strong>Áudio cortando</strong></td>
+        <td>Fala com mais de 28 palavras</td>
+        <td>Contar palavras sempre. Máx 28 por cena de 8s</td>
+      </tr>
+      <tr>
+        <td><strong>Produto pequeno demais</strong></td>
+        <td>Produto mencionado de forma genérica</td>
+        <td>Adicionar "LARGE and clearly visible filling most of the frame"</td>
+      </tr>
+      <tr>
+        <td><strong>Sotaque paulistano</strong></td>
+        <td>Veo 3 não fixa carioca pelo bloco VOICE</td>
+        <td>Workflow separado: vídeo sem fala + ElevenLabs + CapCut</td>
+      </tr>
+      <tr>
+        <td><strong>Bloqueio celebridade Nano Banana</strong></td>
+        <td>Input era foto de pessoa real famosa</td>
+        <td>Usar sempre foto Carol gerada por IA como input</td>
+      </tr>
+      <tr>
+        <td><strong>Fala embola com gestos</strong></td>
+        <td>SCENE ACTION descreveu movimento de mãos</td>
+        <td>"NO hand movements, NO gestures, NO pointing. Static natural pose."</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 </section>
 
 </main>
 
-<!-- FOOTER -->
 <div class="footer">
   <div class="footer-logo">Achadinhos da Carol</div>
-  <div class="footer-sub">Projeto Carol · Guia v5.0 · Mai 2026</div>
+  <div class="footer-sub">Guia v6.0 · Mai 2026 · Iniciar novo chat com este arquivo</div>
   <p style="margin-top:16px;font-size:12px;color:var(--text-dim)">Documento interno de operação. Atualizar conforme novos aprendizados.</p>
 </div>
 
 <script>
-  // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      const el = document.querySelector(a.getAttribute('href'));
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const el = document.querySelector(a.getAttribute('href'));
+    if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
   });
+});
 </script>
-
 </body>
 </html>
